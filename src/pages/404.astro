@@ -2,5 +2,5 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="Página no encontrada | CONSUC SAC">
-  <main class="not-found container"><p class="eyebrow">CONSUC SAC · 404</p><h1>Esta página no está disponible.</h1><p>Vuelve al inicio para conocer nuestros servicios y contactar con el equipo.</p><a class="button" href="/">Ir al inicio</a></main>
+  <main class="not-found container"><p class="eyebrow">CONSUC SAC · 404</p><h1>Esta página no está disponible.</h1><p>Vuelve al inicio para conocer nuestros servicios y contactar con el equipo.</p><a class="button" href={import.meta.env.BASE_URL}>Ir al inicio</a></main>
 </BaseLayout>

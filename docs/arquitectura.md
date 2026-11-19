@@ -114,11 +114,11 @@ Clientes, AWS, SGS y código vendor siguen `fuentes-y-contenido.md`. No inventar
 
 ## Publicación y posicionamiento
 
-Desarrollar localmente primero. Se recomienda Cloudflare Pages para la primera propuesta, con URL temporal `pages.dev`, y dominio propio al aprobar la versión final. Esta actualización documental no publica el sitio ni cambia la visibilidad del repositorio.
+La primera propuesta se prepara para GitHub Pages mediante `.github/workflows/pages.yml`, por preferencia del usuario, con URL prevista `https://dan1elmon.github.io/CONSUC/`. Activar Source: GitHub Actions en Settings → Pages y enviar el workflow al remoto antes de considerar disponible el enlace. Cloudflare Pages sigue siendo la opción para evaluar el alojamiento comercial definitivo. Esta configuración no cambia la visibilidad del repositorio.
 
-Compilación prevista: `npm run build`; salida `dist/`. El despliegue desde Git se configura cuando exista acceso autorizado a las plataformas. Una vez vinculado, un push a la rama elegida puede publicar cambios; los commits locales se mantienen separados de la publicación.
+Compilación: `pnpm build`; salida `dist/`. El workflow comprueba tipos e inventario, compila, ejecuta las pruebas y publica solo esa salida. Se ejecuta al enviar cambios a `main` o de forma manual; la versión anterior permanece si falla la verificación. Los commits locales se mantienen separados de la publicación.
 
-Astro también puede generar una versión para GitHub Pages. Si se elige, configurar URL y ruta base del repositorio y comprobar rutas de imágenes/PDF y condiciones de uso. No es necesario resolverlo para iniciar el desarrollo local.
+El workflow establece origen `https://dan1elmon.github.io`, base `/CONSUC` e indexación desactivada. Favicon, página 404, CSS e imágenes respetan la base. La configuración local y un dominio propio usan base `/`. Consultar activación, límites y resolución de fallos en el README. No hay archivos PDF en el sitio.
 
 Incluir título, descripción, idioma, favicon y metadatos para compartir. Configurar URL canónica y sitemap con el dominio definitivo. Las vistas de revisión usarán `noindex`, que no equivale a privacidad ni control de acceso. No publicar material confidencial.
 

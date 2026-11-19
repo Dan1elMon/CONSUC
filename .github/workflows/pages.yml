@@ -1,0 +1,49 @@
+name: Publicar avance en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Verificar y compilar
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PUBLIC_SITE_URL: https://dan1elmon.github.io
+      PUBLIC_BASE_PATH: /CONSUC
+      PUBLIC_INDEXABLE: 'false'
+      ASTRO_TELEMETRY_DISABLED: '1'
+    steps:
+      - name: Obtener el proyecto
+        uses: actions/checkout@v7
+      - name: Instalar, comprobar y preparar el sitio
+        uses: withastro/action@v6
+        with:
+          node-version: '24'
+          package-manager: pnpm@11.25.0
+          build-cmd: pnpm run check && pnpm run build && pnpm run test
+
+  deploy:
+    name: Publicar la vista de revisión
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Desplegar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

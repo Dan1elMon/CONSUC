@@ -4,6 +4,7 @@ import { readFile, readdir, access } from 'node:fs/promises';
 import { whatsappUrl, formatPhone } from '../src/lib/whatsapp.mjs';
 
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
+const base = `/${(process.env.PUBLIC_BASE_PATH || '').replace(/^\/+|\/+$/g, '')}`.replace(/\/$/, '');
 const services = JSON.parse(await readFile(new URL('../src/content/services.json', import.meta.url), 'utf8'));
 
 test('WhatsApp usa el contacto confirmado y conserva acentos y caracteres del mensaje', () => {
@@ -43,10 +44,24 @@ test('imágenes locales disponibles, con texto alternativo y referencias identif
   for (const image of images) {
     assert.match(image, /\balt="[^"]+"/);
     const path = image.match(/\bsrc="([^"?]+)(?:\?[^"]*)?"/)?.[1];
-    assert.ok(path?.startsWith('/_astro/'), 'Las imágenes se sirven desde el build local');
-    await access(new URL(`../dist${path}`, import.meta.url));
+    assert.ok(path?.startsWith(`${base}/_astro/`), 'Las imágenes deben respetar la ruta base del alojamiento');
+    await access(new URL(`../dist${path.slice(base.length)}`, import.meta.url));
     assert.match(image, /\bwidth="\d+"/);
     assert.match(image, /\bheight="\d+"/);
   }
   assert.ok((html.match(/Imagen referencial/g) || []).length >= 5);
+});
+
+test('favicon, recursos y regreso desde 404 respetan la ruta base', async () => {
+  const notFound = await readFile(new URL('../dist/404.html', import.meta.url), 'utf8');
+  assert.ok(html.includes(`href="${base}/favicon.svg"`));
+  assert.ok(notFound.includes(`href="${base}/">Ir al inicio</a>`));
+  for (const [, asset] of html.matchAll(/(?:src|href)="([^"#]+\.(?:css|js|svg))"/g)) {
+    assert.ok(asset.startsWith(`${base}/`), `Ruta incorrecta: ${asset}`);
+    await access(new URL(`../dist${asset.slice(base.length)}`, import.meta.url));
+  }
+  if (process.env.PUBLIC_SITE_URL) {
+    const expected = new URL(`${base}/`, process.env.PUBLIC_SITE_URL).href;
+    assert.ok(html.includes(`rel="canonical" href="${expected}"`));
+  }
 });
