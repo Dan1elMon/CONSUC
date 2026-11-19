@@ -1,6 +1,6 @@
 # Arquitectura del proyecto CONSUC SAC
 
-Estado: arquitectura actualizada al alcance de landing page, previa al desarrollo.
+Estado: primera versión funcional de la landing implementada para revisión local.
 Actualización: 19 de noviembre de 2026.
 
 ## Objetivo y alcance actual
@@ -26,7 +26,7 @@ Fuentes: `guia_estilo_y_disenio.md`, brochure de seis páginas y referencias ent
 | Cloudflare Pages | Alojamiento estático recomendado, con URL temporal de revisión y dominio posterior. |
 | Git | Commits por avance y control de versiones. |
 
-Seleccionar versiones estables compatibles y fijarlas en un archivo de bloqueo al inicializar Astro. Esta actualización no instala dependencias. Incorporar React, CMS o servicios externos solo cuando una función los requiera.
+Astro y las dependencias están instalados con pnpm y archivo de bloqueo. TypeScript usa una versión compatible con `@astrojs/check`. Incorporar React, CMS o servicios externos solo cuando una función los requiera.
 
 ## Flujo del sistema
 
@@ -83,7 +83,7 @@ src/
     index.astro                # Composición de la landing
     404.astro
   lib/
-    whatsapp.ts                # Generación y codificación de enlaces
+    whatsapp.mjs               # Generación y codificación de enlaces
   styles/
     tokens.css
     global.css
@@ -96,7 +96,7 @@ tsconfig.json
 package.json
 ```
 
-Este árbol es una estructura de implementación, no una aplicación ya creada. Actualmente existen JSON, tokens, contrato futuro y comprobación de arquitectura. Astro y la interfaz aún no están instalados.
+La aplicación está implementada con esta organización. El favicon reside en `public/`; los logos se importan desde la carpeta autorizada. No se incluye una ruta o PDF del brochure. El contenido continúa sujeto a revisión editorial antes de publicar. El contrato de consultas sigue reservado para una ampliación.
 
 Las secciones reciben datos y componen componentes. Leer contactos de una sola fuente; evitar números y correos repetidos en el marcado. Mantener las utilidades independientes del contenido editorial. La escala inicial no requiere microservicios, monorepositorio ni capas de acceso a bases de datos.
 
@@ -127,14 +127,14 @@ No añadir analítica, cookies de seguimiento, formularios o mapas de terceros p
 ## Verificación de entrega
 
 - Catálogo de seis servicios coherente y navegación mediante anclas.
-- Compilación y comprobación de tipos tras instalar Astro.
+- Compilación de producción, comprobación de tipos y pruebas del build con los scripts de `package.json`.
 - Revisión visual a 360, 768 y 1440 px, sin desbordamientos.
 - Teclado, foco, menú móvil y jerarquía de títulos comprobados.
 - WhatsApp con número confirmado, mensaje por servicio y codificación correcta; verificar destinos sin enviar mensajes.
 - Teléfonos, correos, imágenes y anclas sin enlaces rotos; sin brochure publicado ni enlaces de descarga.
 - Contenido aprobado y metadatos de producción antes de publicar.
 
-`node scripts/check-architecture.mjs` verifica el inventario inicial; no certifica una interfaz terminada ni servicios inexistentes. No ejecutar pruebas de API, usuarios o base de datos que no forman parte de la landing.
+`node scripts/check-architecture.mjs` verifica el inventario. `pnpm check` valida también tipos; `pnpm build` genera el sitio; `pnpm test` verifica los enlaces y activos de esa compilación. La revisión en navegador cubre anchos de 360, 768 y 1440 px y las interacciones de menú y alcance. No hay API, usuarios ni base de datos en esta landing.
 
 ## Recursos disponibles y datos necesarios
 

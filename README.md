@@ -1,42 +1,58 @@
 # CONSUC SAC
 
-Base del sitio corporativo de ingeniería, construcción, mantenimiento y transporte para minería e industria.
+Landing corporativa de ingeniería, construcción, mantenimiento y transporte para minería e industria, desarrollada con Astro, TypeScript y CSS.
 
-## Estado actual
+## Estado
 
-Primera entrega: arquitectura y base de contenido. Todavía no hay interfaz web, servidor, base de datos ni panel ejecutables. No se realizan envíos, cargas de archivos o publicaciones. El usuario confirmó los teléfonos, correos y WhatsApp principal (+51 989 522 797). El contenido editorial permanece en borrador.
+Primera versión funcional para revisión local. Incluye Inicio, Nosotros, seis servicios con alcance desplegable, compromisos de seguridad/calidad/ambiente, galería referencial y contacto por WhatsApp, teléfono y correo. Menú móvil accesible y fuentes servidas localmente.
+
+WhatsApp confirmado: +51 989 522 797. El brochure no está en la web. Solo se usan logos de `imgs/Logos`; no se publican logos de clientes ni acreditaciones no verificadas. Las fotos de referencia están rotuladas; su procedencia se registra en [Recursos visuales](docs/recursos-visuales.md).
+
+No se ha desplegado en Internet ni enviado al repositorio remoto. El panel, la base de datos y los formularios quedan fuera del alcance.
+
+## Desarrollo local
+
+Requisitos: Node.js 22.12 o posterior y pnpm 11.25.0. Las dependencias se fijan mediante `pnpm-lock.yaml`.
+
+```sh
+pnpm install --frozen-lockfile
+pnpm dev
+```
+
+Abrir la URL que muestra Astro, normalmente `http://127.0.0.1:4321/`.
+
+## Verificación y compilación
+
+```sh
+pnpm check
+pnpm build
+pnpm test
+pnpm preview
+```
+
+`check` valida tipos de Astro y el inventario. `test` requiere un build previo y comprueba WhatsApp, los seis mensajes por servicio, las anclas, los archivos de imagen y la exclusión de brochure y clientes. La salida estática para alojamiento es `dist/`.
+
+## Contenido y recursos
+
+- `src/content/company.json`: contactos e identidad.
+- `src/content/services.json`: servicios, alcance y mensajes de WhatsApp.
+- `src/content/media-policy.json`: autorización y tratamiento de referencias.
+- `src/components/sections/`: secciones de la landing.
+- `src/assets/references/`: fotografías temporales; sustituir por fotos propias autorizadas.
+- `src/styles/tokens.css` y `global.css`: diseño compartido y responsive.
+
+El inventario permanece en borrador como control editorial; la landing es la propuesta de revisión. Las notas editoriales internas nunca se renderizan en la interfaz. No guardar consultas, secretos ni adjuntos privados en Git.
+
+## Publicación posterior
+
+Se recomienda Cloudflare Pages: comando `pnpm build`, directorio `dist`. Requiere configurar y autorizar el alojamiento; no hay despliegue automático activado en el repositorio.
+
+La propuesta lleva `noindex,nofollow` por defecto. Antes del lanzamiento, configurar `PUBLIC_SITE_URL` con el dominio aprobado y `PUBLIC_INDEXABLE=true`, y volver a compilar. `.env.example` documenta las variables; Astro solo carga los archivos `.env` y las variables proporcionadas al proceso, por lo que no basta editar el ejemplo. La URL canónica se genera únicamente cuando existe dominio configurado. El favicon está incluido; sitemap e imagen social definitiva se preparan con el dominio y material final.
 
 ## Documentación
 
-- [Arquitectura y mapa del sitio](docs/arquitectura.md): decisiones técnicas, estructura futura, diseño y etapas.
-- [Fuentes y contenido](docs/fuentes-y-contenido.md): trazabilidad al brochure, categorías y pendientes editoriales.
-- [Datos y flujos futuros](docs/datos-y-flujos.md): referencia de ampliación con cotizaciones y panel, fuera de la landing.
-- [Guía de estilo original](guia_estilo_y_disenio.md): identidad visual entregada por el usuario.
-
-## Base incorporada
-
-```text
-docs/                          Arquitectura y especificaciones
-scripts/check-architecture.mjs  Comprobación de integridad del inventario
-src/content/                   Empresa, seis servicios y mapa de rutas
-src/contracts/                 Contrato JSON Schema de consultas
-src/styles/tokens.css          Variables visuales de la marca
-```
-
-## Verificar
-
-Con Node.js instalado, sin dependencias externas:
-
-```sh
-node scripts/check-architecture.mjs
-```
-
-También se define `npm run check:architecture`. La comprobación verifica JSON, unicidad de rutas/slugs, coincidencia del catálogo con el contrato y límites del inventario inicial. No es una validación completa de JSON Schema ni sustituye pruebas de la futura aplicación.
-
-## Siguiente etapa
-
-Inicializar Astro con TypeScript en este repositorio y fijar las versiones en un archivo de bloqueo. Construir una landing estática con secciones de empresa, seis servicios y contacto por WhatsApp. No incluir el brochure en la web ni un botón de descarga. Usar únicamente logos de `imgs/Logos` e imágenes de referencia identificadas como tales hasta recibir las fotos del cliente; ver `src/content/media-policy.json`. Usar CSS y los tokens existentes. El alojamiento recomendado es Cloudflare Pages; el dominio y el despliegue se configuran cuando se confirme su publicación.
-
-La primera versión no incluye backend, base de datos, formularios, panel ni páginas independientes de servicio. El esquema de consultas queda como referencia futura. Ver requisitos de inicio y criterios de entrega en la arquitectura.
-
-No subir secretos ni adjuntos privados a Git. Los archivos `.env*` y los temporales están excluidos. Cada avance se guarda en un commit acotado; no se ha publicado ni enviado el repositorio remoto como parte de esta primera entrega.
+- [Arquitectura y etapas](docs/arquitectura.md).
+- [Fuentes y control editorial](docs/fuentes-y-contenido.md).
+- [Recursos visuales](docs/recursos-visuales.md).
+- [Datos y flujos futuros](docs/datos-y-flujos.md), fuera de esta landing.
+- [Guía de estilo original](guia_estilo_y_disenio.md).
