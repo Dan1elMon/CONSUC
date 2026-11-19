@@ -1,0 +1,52 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFile, readdir, access } from 'node:fs/promises';
+import { whatsappUrl, formatPhone } from '../src/lib/whatsapp.mjs';
+
+const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
+const services = JSON.parse(await readFile(new URL('../src/content/services.json', import.meta.url), 'utf8'));
+
+test('WhatsApp usa el contacto confirmado y conserva acentos y caracteres del mensaje', () => {
+  const message = 'Cotización: ingeniería & diseño, Apurímac + planos';
+  const url = new URL(whatsappUrl(message));
+  assert.equal(url.origin, 'https://wa.me');
+  assert.equal(url.pathname, '/51989522797');
+  assert.equal(url.searchParams.get('text'), message);
+  assert.equal(formatPhone('+51989522797'), '989 522 797');
+});
+
+test('cada servicio tiene su enlace de consulta con mensaje específico', () => {
+  for (const service of services) {
+    assert.ok(html.includes(`id="servicio-${service.slug}"`), service.title);
+    assert.ok(html.includes(whatsappUrl(service.whatsappMessage)), `Falta el contacto de ${service.title}`);
+  }
+});
+
+test('las anclas internas apuntan a elementos existentes y los IDs son únicos', () => {
+  const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+  assert.equal(ids.length, new Set(ids).size);
+  for (const [, anchor] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(anchor), anchor);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+});
+
+test('la propuesta no publica brochure, formularios ni clientes sin autorización', async () => {
+  assert.doesNotMatch(html, /<form\b|href="[^"]*\.pdf|<iframe\b|id="clientes"/i);
+  assert.doesNotMatch(html, /brochure/i);
+  const files = await readdir(new URL('../dist/', import.meta.url), { recursive: true });
+  assert.ok(!files.some(file => /\.pdf$/i.test(file)));
+  assert.ok(html.includes('noindex,nofollow'), 'La propuesta no debe indexarse por defecto');
+});
+
+test('imágenes locales disponibles, con texto alternativo y referencias identificadas', async () => {
+  const images = [...html.matchAll(/<img\b[^>]*>/g)].map(match => match[0]);
+  assert.ok(images.length >= 5);
+  for (const image of images) {
+    assert.match(image, /\balt="[^"]+"/);
+    const path = image.match(/\bsrc="([^"?]+)(?:\?[^"]*)?"/)?.[1];
+    assert.ok(path?.startsWith('/_astro/'), 'Las imágenes se sirven desde el build local');
+    await access(new URL(`../dist${path}`, import.meta.url));
+    assert.match(image, /\bwidth="\d+"/);
+    assert.match(image, /\bheight="\d+"/);
+  }
+  assert.ok((html.match(/Imagen referencial/g) || []).length >= 5);
+});

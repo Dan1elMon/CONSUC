@@ -1,0 +1,18 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import Icon from '../ui/Icon.astro';
+const values = [
+  { icon: 'shield', title: 'Seguridad en el trabajo', text: 'La seguridad forma parte de nuestra manera de abordar los trabajos y las necesidades de cada operación.' },
+  { icon: 'quality', title: 'Calidad y compromiso', text: 'Buscamos soluciones técnicamente viables, con atención al detalle y a los requerimientos de cada cliente.' },
+  { icon: 'leaf', title: 'Cuidado del entorno', text: 'El respeto por el medio ambiente acompaña nuestro compromiso con una operación responsable.' },
+];
+---
+<section class="section commitment" id="seguridad-calidad" aria-label="Nuestro compromiso">
+  <div class="container">
+    <div class="section-heading-row">
+      <SectionTitle number="03" eyebrow="NUESTRO COMPROMISO" title="HACER BIEN EL TRABAJO, DESDE EL PRINCIPIO." light />
+      <p>La forma de trabajar importa tanto<br />como la solución que entregamos.</p>
+    </div>
+    <div class="values-grid">{values.map(value => <article><Icon name={value.icon} size={42} /><h3>{value.title}</h3><p>{value.text}</p></article>)}</div>
+  </div>
+</section>

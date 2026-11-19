@@ -1,0 +1,27 @@
+---
+import services from '../../content/services.json';
+import { whatsappUrl } from '../../lib/whatsapp.mjs';
+import Icon from '../ui/Icon.astro';
+import SectionTitle from '../ui/SectionTitle.astro';
+---
+<section class="section services" id="servicios" aria-label="Nuestros servicios">
+  <div class="container">
+    <div class="section-heading-row">
+      <SectionTitle number="02" eyebrow="LO QUE HACEMOS" title="CAPACIDADES QUE SUMAN A TU PROYECTO." />
+      <p>Desde el diseño hasta la operación.<br />Encuentra el soporte que tu trabajo necesita.</p>
+    </div>
+    <div class="services-grid">
+      {services.map(service => <article class="service-card" id={`servicio-${service.slug}`}>
+        <div class="service-icon"><Icon name={service.id} size={34} /></div>
+        <h3>{service.title}</h3>
+        <p>{service.summary}</p>
+        <details class="service-details">
+          <summary>Ver alcance <Icon name="plus" size={18} /></summary>
+          <ul>{service.scope.map(item => <li>{item}</li>)}</ul>
+        </details>
+        <a class="service-contact" href={whatsappUrl(service.whatsappMessage)} target="_blank" rel="noopener noreferrer" aria-label={`Consultar por WhatsApp: ${service.title}`}><Icon name="chat" size={18} /> Consultar este servicio</a>
+      </article>)}
+    </div>
+    <div class="service-bottom"><p>¿Tu requerimiento combina varios servicios?</p><a href={whatsappUrl('Hola, tengo un proyecto que requiere varios servicios. Quisiera coordinar una consulta con CONSUC SAC.')} target="_blank" rel="noopener noreferrer">Cuéntanos qué necesitas</a></div>
+  </div>
+</section>

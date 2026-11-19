@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import About from '../components/sections/About.astro';
+import Services from '../components/sections/Services.astro';
+import Commitment from '../components/sections/Commitment.astro';
+import Gallery from '../components/sections/Gallery.astro';
+import Contact from '../components/sections/Contact.astro';
+import Icon from '../components/ui/Icon.astro';
+import { whatsappUrl } from '../lib/whatsapp.mjs';
+---
+<BaseLayout>
+  <Header />
+  <main id="contenido"><Hero /><About /><Services /><Commitment /><Gallery /><Contact /></main>
+  <Footer />
+  <a class="floating-whatsapp" href={whatsappUrl()} target="_blank" rel="noopener noreferrer" aria-label="Contactar a CONSUC por WhatsApp (abre en otra pestaña)"><Icon name="chat" size={30} /><span>WhatsApp</span></a>
+</BaseLayout>

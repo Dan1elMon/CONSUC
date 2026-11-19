@@ -1,0 +1,55 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../../imgs/Logos/LOGO CONSUC PNG.png';
+import company from '../../content/company.json';
+import { whatsappUrl, formatPhone } from '../../lib/whatsapp.mjs';
+import Icon from '../ui/Icon.astro';
+const links = [
+  ['inicio', 'Inicio'], ['nosotros', 'Nosotros'], ['servicios', 'Servicios'],
+  ['seguridad-calidad', 'Nuestro compromiso'], ['contacto', 'Contacto'],
+];
+---
+<div class="topbar">
+  <div class="container topbar-inner">
+    <span><Icon name="pin" size={14} /> Challhuahuacho, Apurímac · Perú</span>
+    <a href={`mailto:${company.emails[0]}`}><Icon name="mail" size={14} /> {company.emails[0]}</a>
+    <a href={`tel:${company.phones[0]}`}><Icon name="phone" size={14} /> {formatPhone(company.phones[0])}</a>
+  </div>
+</div>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#inicio" class="brand" aria-label="CONSUC SAC, ir al inicio">
+      <Image src={logo} alt="CONSUC Servicios Integrales" width={190} format="webp" loading="eager" />
+    </a>
+    <button class="menu-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-navigation" class="main-navigation" aria-label="Navegación principal">
+      {links.map(([anchor, label]) => <a href={`#${anchor}`}>{label}</a>)}
+      <a class="button button-small" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><Icon name="chat" size={18} /> Cotizar proyecto</a>
+    </nav>
+  </div>
+</header>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.querySelector<HTMLElement>('#main-navigation');
+  if (button && nav) {
+    const setOpen = (open: boolean) => {
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      nav.classList.toggle('is-open', open);
+    };
+    button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        button.focus();
+      }
+    });
+    document.addEventListener('click', event => {
+      if (event.target instanceof Node && !nav.contains(event.target) && !button.contains(event.target)) setOpen(false);
+    });
+    window.matchMedia('(min-width: 1100px)').addEventListener('change', () => setOpen(false));
+  }
+</script>

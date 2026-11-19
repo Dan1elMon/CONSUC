@@ -2,8 +2,25 @@
   "name": "consuc",
   "version": "0.1.0",
   "private": true,
-  "description": "Base de arquitectura del sitio corporativo CONSUC SAC. Aplicación pendiente de implementación.",
+  "type": "module",
+  "packageManager": "pnpm@11.25.0",
+  "description": "Landing corporativa CONSUC SAC, desarrollada con Astro.",
   "scripts": {
-    "check:architecture": "node scripts/check-architecture.mjs"
-  }
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "check": "astro check && node scripts/check-architecture.mjs",
+    "check:architecture": "node scripts/check-architecture.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "astro": "7.4.13",
+    "@fontsource-variable/inter": "5.3.0",
+    "@fontsource-variable/montserrat": "5.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "typescript": "^6.0.0"
+  },
+  "engines": { "node": ">=22.12.0" }
 }

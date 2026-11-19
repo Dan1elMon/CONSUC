@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import welding from '../../assets/references/soldadura.jpg';
+import SectionTitle from '../ui/SectionTitle.astro';
+---
+<section class="section about" id="nosotros" aria-labelledby="about-heading">
+  <div class="container about-grid">
+    <div class="about-visual">
+      <figure class="about-photo">
+        <Image src={welding} alt="Trabajo de soldadura industrial, imagen referencial" widths={[480, 800, 1100]} sizes="(max-width: 800px) 100vw, 45vw" format="webp" loading="lazy" />
+        <figcaption class="photo-tag">METALMECÁNICA <span>Imagen referencial</span></figcaption>
+      </figure>
+      <div class="about-note"><span>DESDE CHALLHUAHUACHO</span><strong>Ingenio peruano.<br />Compromiso en cada trabajo.</strong></div>
+    </div>
+    <div class="about-copy" id="about-heading">
+      <SectionTitle number="01" eyebrow="SOMOS CONSUC" title="SOLUCIONES PRÁCTICAS. TRABAJO QUE RESPONDE." />
+      <p class="lead">Acompañamos las necesidades de la minería y la industria con servicios de ingeniería, construcción, mantenimiento y transporte.</p>
+      <p>Somos una empresa peruana con sede en Challhuahuacho, Apurímac. Desde 2020, integramos capacidades técnicas para atender trabajos de metalmecánica, instalaciones eléctricas y obras civiles.</p>
+      <div class="purpose-grid">
+        <div><h3>NUESTRA MISIÓN</h3><p>Resolver las necesidades de nuestros clientes con soluciones prácticas y viables, cuidando la seguridad y el medio ambiente.</p></div>
+        <div><h3>NUESTRA VISIÓN</h3><p>Crecer con excelencia, innovación y calidad, apoyados en la tecnología y en equipos de trabajo altamente calificados.</p></div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import mining from '../../assets/references/mineria.jpg';
+import { whatsappUrl } from '../../lib/whatsapp.mjs';
+import Icon from '../ui/Icon.astro';
+---
+<section class="hero" id="inicio" aria-labelledby="hero-title">
+  <Image src={mining} alt="Vista aérea referencial de una operación minera" class="hero-image" widths={[720, 1200, 1600, 2000]} sizes="100vw" format="webp" loading="eager" fetchpriority="high" />
+  <div class="hero-shade"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <p class="hero-kicker"><span></span> SERVICIOS INTEGRALES PARA MINERÍA E INDUSTRIA</p>
+      <h1 id="hero-title">INGENIERÍA QUE<br />IMPULSA TU<br /><em>OPERACIÓN.</em></h1>
+      <p class="hero-description">Ingeniería, construcción, mantenimiento y transporte.<br class="desktop-break" /> Soluciones prácticas para los desafíos de tu proyecto.</p>
+      <div class="hero-actions">
+        <a class="button" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><Icon name="chat" size={20} /> Conversemos por WhatsApp</a>
+        <a class="button button-outline-light" href="#servicios">Explorar servicios</a>
+      </div>
+    </div>
+    <span class="reference-label hero-reference">Imagen referencial</span>
+    <div class="hero-bottom"><span>CAPACIDAD TÉCNICA. COMPROMISO EN CAMPO.</span><a href="#nosotros">Conoce CONSUC <span aria-hidden="true">↓</span></a></div>
+  </div>
+</section>
+<div class="facts-band">
+  <div class="container facts-inner">
+    <div><strong>2020</strong><span>Operando desde</span></div>
+    <div><strong>06</strong><span>Categorías de servicio</span></div>
+    <div class="fact-location"><Icon name="pin" size={30} /><div><strong>APURÍMAC</strong><span>Nuestra base, tu punto de apoyo</span></div></div>
+    <p>Una empresa peruana.<br /><b>Soluciones que conectan.</b></p>
+  </div>
+</div>

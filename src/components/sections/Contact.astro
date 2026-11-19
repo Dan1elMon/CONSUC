@@ -1,0 +1,15 @@
+---
+import company from '../../content/company.json';
+import { whatsappUrl, formatPhone } from '../../lib/whatsapp.mjs';
+import Icon from '../ui/Icon.astro';
+---
+<section class="contact" id="contacto" aria-labelledby="contact-title">
+  <div class="container contact-grid">
+    <div class="contact-pitch"><p class="eyebrow"><span aria-hidden="true">05</span> CONVERSEMOS</p><h2 id="contact-title">TU PRÓXIMO<br />PROYECTO<br />EMPIEZA AQUÍ.</h2><p>Cuéntanos qué necesitas, dónde se realizará el trabajo y cómo podemos ayudarte.</p><a class="button button-dark" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><Icon name="chat" size={22} /> Escríbenos por WhatsApp</a><span class="contact-whatsapp">WhatsApp: +51 {formatPhone(company.whatsappNumber)}</span></div>
+    <div class="contact-info">
+      <div class="contact-item"><Icon name="phone" size={24} /><div><h3>HABLEMOS DE TU PROYECTO</h3>{company.phones.map(phone => <a class="contact-phone" href={`tel:${phone}`}>+51 {formatPhone(phone)}</a>)}</div></div>
+      <div class="contact-item"><Icon name="mail" size={24} /><div><h3>ESCRÍBENOS</h3>{company.emails.map(email => <a href={`mailto:${email}`}>{email}</a>)}</div></div>
+      <div class="contact-item"><Icon name="pin" size={24} /><div><h3>NUESTRA SEDE</h3><p>{company.address.district}, {company.address.region}<br />{company.address.country}</p></div></div>
+    </div>
+  </div>
+</section>

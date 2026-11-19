@@ -1,0 +1,35 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/montserrat';
+import '../styles/tokens.css';
+import '../styles/global.css';
+interface Props { title?: string; description?: string }
+const {
+  title = 'CONSUC SAC | Ingeniería y servicios para minería e industria',
+  description = 'Ingeniería, fabricación, mantenimiento, obras civiles y transporte. CONSUC SAC, soluciones integrales desde Challhuahuacho, Apurímac. Conversemos por WhatsApp.',
+} = Astro.props;
+const indexable = import.meta.env.PUBLIC_INDEXABLE === 'true' && Boolean(Astro.site);
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+---
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={indexable ? 'index,follow' : 'noindex,nofollow'} />
+    <meta name="theme-color" content="#1c2a39" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="CONSUC SAC" />
+    {canonical && <><link rel="canonical" href={canonical} /><meta property="og:url" content={canonical} /></>}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <slot />
+  </body>
+</html>

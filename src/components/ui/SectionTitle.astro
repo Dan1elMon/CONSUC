@@ -1,0 +1,9 @@
+---
+interface Props { number: string; eyebrow: string; title: string; light?: boolean }
+const { number, eyebrow, title, light = false } = Astro.props;
+---
+<div class:list={['section-title', { 'section-title--light': light }]}>
+  <p class="eyebrow"><span aria-hidden="true">{number}</span> {eyebrow}</p>
+  <h2>{title}</h2>
+  <span class="title-rule" aria-hidden="true"></span>
+</div>
