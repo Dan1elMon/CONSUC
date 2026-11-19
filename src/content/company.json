@@ -12,9 +12,15 @@
   },
   "phones": ["+51989522797", "+51992568444"],
   "emails": ["operaciones@ucuyre.com", "administracion@ucuyre.com", "gerencia@ucuyre.com"],
-  "whatsappNumber": null,
+  "whatsappNumber": "+51989522797",
+  "contactConfirmation": {
+    "source": "user",
+    "confirmedOn": "2026-11-19",
+    "fields": ["phones", "emails", "whatsappNumber"]
+  },
   "inquiryRecipient": null,
   "socialLinks": [],
+  "brochureEnabled": false,
   "brochurePublicPath": null,
   "publicationStatus": "draft",
   "reviewStatus": "pending_confirmation",

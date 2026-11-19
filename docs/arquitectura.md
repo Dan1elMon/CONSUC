@@ -7,7 +7,7 @@ Actualización: 19 de noviembre de 2026.
 
 Desarrollar una landing corporativa en español que presente CONSUC SAC, explique sus seis categorías de servicios y facilite el contacto por WhatsApp, teléfono y correo. Todo el contenido principal se muestra en una página con navegación por secciones.
 
-La primera versión incluye diseño responsive, identidad visual del brochure, fotografías aprobadas, contenido empresarial, servicios, descarga del brochure y enlaces de contacto. Las páginas independientes de servicio, panel, formularios, adjuntos, base de datos, autenticación y portal de clientes quedan para ampliaciones futuras.
+La primera versión incluye diseño responsive, identidad visual del brochure, imágenes de referencia identificadas, contenido empresarial, servicios y enlaces de contacto. El brochure se usa solo como fuente interna: no se aloja, incrusta ni ofrece para descarga en la web. Las páginas independientes de servicio, panel, formularios, adjuntos, base de datos, autenticación y portal de clientes quedan para ampliaciones futuras.
 
 Esta decisión sustituye la arquitectura inicial con Next.js y PostgreSQL, que respondía al alcance completo. No se necesita mantener un servidor ni contratar una base de datos para la landing.
 
@@ -39,7 +39,6 @@ flowchart LR
   Visitante[Visitante] --> Pages
   Pages --> WhatsApp[Enlace externo a WhatsApp]
   Pages --> Contacto[Teléfono y correo]
-  Pages --> PDF[Brochure aprobado]
 ```
 
 Los cambios de contenido requieren compilar y desplegar de nuevo. Inicialmente el desarrollador actualiza los archivos mediante Git. WhatsApp abre una conversación con mensaje predefinido; no requiere API, bot ni servidor propio. El clic no acredita envío del mensaje ni genera una consulta registrada.
@@ -53,12 +52,12 @@ Ruta pública inicial: `/`. El menú usa anclas; los slugs de servicios son iden
 | `#inicio` | Presentación, imagen principal y CTA de WhatsApp. |
 | `#nosotros` | Empresa, trayectoria desde 2020, ubicación, misión y visión. |
 | `#servicios` | Seis categorías con resumen, alcance y WhatsApp contextual. |
-| `#galeria` | Fotografías de operaciones autorizadas; opcional según material disponible. |
-| `#clientes` | Nombres o logos aprobados; omitir mientras falte confirmar su publicación. |
+| `#galeria` | Opcional: imágenes de referencia rotuladas como tales; no representan trabajos de CONSUC. Sustituirlas cuando lleguen fotos propias aprobadas. |
+| `#clientes` | Omitir por ahora: solo están autorizados los logos corporativos disponibles en `imgs/Logos`, no los logos de clientes del brochure. |
 | `#seguridad-calidad` | Compromisos documentados y acreditaciones solo con alcance y vigencia revisados. |
-| `#contacto` | Teléfonos, correos, dirección, WhatsApp y descarga del brochure. |
+| `#contacto` | Teléfonos, correos, dirección y WhatsApp. |
 
-El pie contiene razón social, RUC y enlaces útiles. El botón «Cotizar por WhatsApp» abre el contacto externo. La descarga se habilita tras aprobar el PDF y copiarlo a `public/brochure/`. No inventar fichas de proyectos a partir de fotografías.
+El pie contiene razón social, RUC y enlaces útiles. El botón «Cotizar por WhatsApp» abre el contacto externo al +51 989 522 797. No incluir PDF, descarga ni visor del brochure. No inventar fichas de proyectos a partir de fotografías.
 
 Las seis categorías se conservan en `src/content/services.json`. `src/content/routes.json` distingue las secciones actuales de las rutas de una posible ampliación.
 
@@ -66,7 +65,6 @@ Las seis categorías se conservan en `src/content/services.json`. `src/content/r
 
 ```text
 public/
-  brochure/                    # PDF aprobado
   favicon.svg
 src/
   assets/                      # Logos y fotografías para optimización
@@ -78,6 +76,7 @@ src/
     company.json               # Empresa y contactos
     services.json              # Seis servicios
     routes.json                # Ruta, anclas y ampliaciones
+    media-policy.json          # Logos autorizados y uso de referencias
   layouts/
     BaseLayout.astro           # HTML base, metadatos y estilos
   pages/
@@ -107,7 +106,7 @@ Preservar azul `#1C2A39`, naranja `#F27D16`, verde `#54B948`, blanco y gris hiel
 
 Conservar encabezados numerados, subrayados de 60 × 4 px, viñetas cuadradas, fotos con radio de 10 px y etiquetas azules con borde naranja. Ajuste a la guía: texto azul oscuro sobre botones naranjas para mejorar el contraste. Distinguir las cuatro líneas corporativas del brochure de las seis categorías web.
 
-Revisar las variantes de logo existentes en la raíz; conservar originales y generar derivados optimizados. Imágenes con tamaños adecuados, dimensiones declaradas y formatos modernos; carga diferida fuera de la vista inicial, sin diferir la imagen principal. Usar fotos reales autorizadas, con texto alternativo. No representar trabajos de CONSUC con imágenes generadas.
+Usar únicamente las variantes de logo de `imgs/Logos`, conservar los originales y generar derivados optimizados. Mientras el cliente reúne las fotografías, utilizar imágenes de referencia con procedencia y condiciones de uso registradas y etiqueta «Imagen referencial». No atribuirlas a proyectos, instalaciones o personal de CONSUC. Preparar su sustitución por imágenes propias aprobadas sin modificar la estructura. Imágenes con texto alternativo, tamaños adecuados, dimensiones declaradas y formatos modernos; carga diferida fuera de la vista inicial, sin diferir la imagen principal.
 
 HTML semántico, un H1, jerarquía de títulos, enlace para saltar al contenido y foco visible. Menú móvil con teclado, estado expandido y cierre con Escape. Respetar movimiento reducido.
 
@@ -132,25 +131,23 @@ No añadir analítica, cookies de seguimiento, formularios o mapas de terceros p
 - Revisión visual a 360, 768 y 1440 px, sin desbordamientos.
 - Teclado, foco, menú móvil y jerarquía de títulos comprobados.
 - WhatsApp con número confirmado, mensaje por servicio y codificación correcta; verificar destinos sin enviar mensajes.
-- Teléfonos, correos, imágenes, anclas y PDF sin enlaces rotos.
+- Teléfonos, correos, imágenes y anclas sin enlaces rotos; sin brochure publicado ni enlaces de descarga.
 - Contenido aprobado y metadatos de producción antes de publicar.
 
 `node scripts/check-architecture.mjs` verifica el inventario inicial; no certifica una interfaz terminada ni servicios inexistentes. No ejecutar pruebas de API, usuarios o base de datos que no forman parte de la landing.
 
 ## Recursos disponibles y datos necesarios
 
-Ya disponibles: guía visual, brochure original en el escritorio, catálogo inicial, contactos del brochure, tokens CSS y seis archivos de logo en la raíz. Revisar estos recursos antes de pedir material adicional.
+Ya disponibles: guía visual, brochure original para consulta interna, catálogo inicial, tokens CSS y seis archivos de logo en `imgs/Logos`. El usuario confirmó WhatsApp +51 989 522 797; teléfonos 989 522 797 y 992 568 444; correos operaciones@ucuyre.com, administracion@ucuyre.com y gerencia@ucuyre.com. Revisar estos recursos antes de pedir material adicional.
 
 | Pendiente | Momento y tratamiento |
 | --- | --- |
-| WhatsApp principal con código de país | Necesario para activar CTA finales. Los dos teléfonos del brochure no identifican cuál usa WhatsApp. El diseño puede avanzar sin asumir un número. |
-| Confirmar teléfonos, correos y dirección públicos | Antes de revisión final; usar el inventario existente como borrador. |
-| Fotos originales y cuáles corresponden a trabajos propios | Revisar primero el brochure y aprovechar material autorizado. Mejoran la galería, pero no bloquean la estructura. |
-| Clientes/logos y afirmaciones AWS/SGS que se pueden publicar | Confirmar antes de mostrar esos elementos; pueden omitirse mientras se revisan. |
-| PDF final autorizado para descarga | Ya existe el brochure; confirmar que puede publicarse y no requiere cambios. |
+| Dirección pública | Mantenerla como dato del brochure pendiente de confirmación específica antes de la publicación final. |
+| Fotos originales y cuáles corresponden a trabajos propios | El usuario las solicitará al cliente; continuar con referencias identificadas. Preferir una carpeta compartida con originales o archivos enviados como documentos. |
+| Clientes y afirmaciones AWS/SGS | Omitir logos de clientes y acreditaciones sin confirmación; usar solo los logos de `imgs/Logos`. |
 | Dominio y acceso al repositorio/alojamiento | Solo al configurar despliegue, mediante autorización de las plataformas. No solicitar contraseñas o tokens por el chat. |
 
-Se puede comenzar la estructura y el diseño con el material existente. Los pendientes condicionan activar contactos y publicar elementos concretos, no inicializar Astro. La variante de logo se elige tras revisar los originales y se presenta en la propuesta visual.
+Se puede comenzar la estructura y el diseño con los contactos confirmados y el material existente. Las fotos del cliente no bloquean el desarrollo. La variante de logo se elige dentro de `imgs/Logos` y se presenta en la propuesta visual. El brochure queda excluido de la web por instrucción explícita del usuario.
 
 ## Evolución posterior
 

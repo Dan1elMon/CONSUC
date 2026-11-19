@@ -4,12 +4,13 @@ import { readFile } from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const read = (path) => readFile(new URL(path, root), 'utf8');
 const json = async (path) => JSON.parse(await read(path));
-const [company, services, routes, inquiry, css] = await Promise.all([
+const [company, services, routes, inquiry, css, mediaPolicy] = await Promise.all([
   json('src/content/company.json'),
   json('src/content/services.json'),
   json('src/content/routes.json'),
   json('src/contracts/inquiry.schema.json'),
   read('src/styles/tokens.css'),
+  json('src/content/media-policy.json'),
 ]);
 const unique = (values, name) => assert.equal(new Set(values).size, values.length, `${name}: valores duplicados`);
 assert.equal(services.length, 6, 'Deben existir seis categorías web');
@@ -56,9 +57,16 @@ for (const route of routes.future.private) {
 assert.match(company.ruc, /^\d{11}$/);
 assert.equal(company.operatingSince, 2020);
 assert.equal(company.corporateServiceLines, 4, 'Separar líneas corporativas de categorías web');
-assert.equal(company.whatsappNumber, null, 'WhatsApp requiere confirmación');
+assert.equal(company.whatsappNumber, '+51989522797', 'Usar el WhatsApp confirmado por el usuario');
+assert.ok(company.phones.includes(company.whatsappNumber));
+assert.deepEqual(company.contactConfirmation.fields, ['phones', 'emails', 'whatsappNumber']);
 assert.equal(company.inquiryRecipient, null, 'El receptor requiere confirmación');
-assert.equal(company.brochurePublicPath, null, 'La descarga requiere revisión');
+assert.equal(company.brochureEnabled, false, 'El brochure está excluido de la web por instrucción del usuario');
+assert.equal(company.brochurePublicPath, null, 'No debe existir una descarga pública del brochure');
+assert.equal(mediaPolicy.authorizedLogoDirectory, 'imgs/Logos');
+assert.equal(mediaPolicy.clientLogosAuthorized, false);
+assert.equal(mediaPolicy.photographyMode, 'reference_until_client_originals');
+assert.ok(mediaPolicy.referenceLabel);
 assert.equal(company.publicationStatus, 'draft');
 assert.ok(company.phones.every((phone) => /^\+51\d{9}$/.test(phone)));
 for (const color of ['#1c2a39', '#f27d16', '#54b948', '#f4f6f8']) assert.ok(css.includes(color));

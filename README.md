@@ -4,7 +4,7 @@ Base del sitio corporativo de ingeniería, construcción, mantenimiento y transp
 
 ## Estado actual
 
-Primera entrega: arquitectura y base de contenido. Todavía no hay interfaz web, servidor, base de datos ni panel ejecutables. No se realizan envíos, cargas de archivos o publicaciones. Los contactos y servicios importados del brochure permanecen en borrador para revisión.
+Primera entrega: arquitectura y base de contenido. Todavía no hay interfaz web, servidor, base de datos ni panel ejecutables. No se realizan envíos, cargas de archivos o publicaciones. El usuario confirmó los teléfonos, correos y WhatsApp principal (+51 989 522 797). El contenido editorial permanece en borrador.
 
 ## Documentación
 
@@ -35,7 +35,7 @@ También se define `npm run check:architecture`. La comprobación verifica JSON,
 
 ## Siguiente etapa
 
-Inicializar Astro con TypeScript en este repositorio y fijar las versiones en un archivo de bloqueo. Construir una landing estática con secciones de empresa, seis servicios, contenido visual aprobado, contacto por WhatsApp y brochure descargable. Usar CSS y los tokens existentes. El alojamiento recomendado es Cloudflare Pages; el dominio y el despliegue se configuran cuando se confirme su publicación.
+Inicializar Astro con TypeScript en este repositorio y fijar las versiones en un archivo de bloqueo. Construir una landing estática con secciones de empresa, seis servicios y contacto por WhatsApp. No incluir el brochure en la web ni un botón de descarga. Usar únicamente logos de `imgs/Logos` e imágenes de referencia identificadas como tales hasta recibir las fotos del cliente; ver `src/content/media-policy.json`. Usar CSS y los tokens existentes. El alojamiento recomendado es Cloudflare Pages; el dominio y el despliegue se configuran cuando se confirme su publicación.
 
 La primera versión no incluye backend, base de datos, formularios, panel ni páginas independientes de servicio. El esquema de consultas queda como referencia futura. Ver requisitos de inicio y criterios de entrega en la arquitectura.
 

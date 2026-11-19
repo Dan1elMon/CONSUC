@@ -12,6 +12,8 @@
 
 ## Inventario del brochure
 
+Las filas siguientes describen la fuente recibida. Las decisiones del usuario registradas al final de este documento prevalecen sobre los pendientes del inventario original.
+
 | Páginas | Dato | Tratamiento |
 | --- | --- | --- |
 | 1, 6 | CONSUC SAC, RUC 20608565885, código vendor 215571. | Inventario inicial; el código vendor no se presenta como certificación general. |
@@ -44,12 +46,23 @@
 - AWS no se etiqueta como una certificación de empresa. Registrar norma/edición y alcance aplicable si se aporta evidencia; no inventarlos.
 - Una homologación registra emisor, documento, alcance, fechas y revisión. Un registro vencido o sin evidencia no aparece como acreditación vigente.
 - El código vendor se muestra solo en contexto identificado; no implica homologación universal ni autorización de logos.
-- Las descargas públicas solo incluyen documentos aprobados. El brochure tendrá nombre accesible, tamaño y fecha de revisión; no alojarlo automáticamente con información que aún deba actualizarse.
+- El brochure se conserva solo como fuente interna. Por instrucción del usuario, no se publica en la web, no se incrusta y no se ofrece para descarga.
 - Registrar procedencia, permiso, autor/revisor y fecha de revisión del contenido y de cada activo.
 - Usar los datos del brochure como inventario recibido, sin asumir que siguen vigentes por el año del nombre del archivo.
 
 ## Material pendiente
 
-Archivos de fuentes con licencia; fotografías originales y permisos; fichas de proyectos; autorizaciones de clientes; evidencia AWS/SGS; brochure final aprobado; WhatsApp y responsables; enlaces sociales oficiales; política de privacidad y conservación. No había archivos en las carpetas iniciales `imgs/` y `docs/` al comenzar esta tarea.
+Archivos de fuentes con licencia; fotografías originales; fichas de proyectos si se amplía el alcance; autorizaciones de clientes; evidencia AWS/SGS si se desea mostrarla; dirección pública por confirmar y enlaces sociales oficiales. Los contactos telefónicos, correos y WhatsApp ya fueron confirmados. No hay descarga del brochure en el alcance actual. No había archivos en las carpetas iniciales `imgs/` y `docs/` al comenzar esta tarea.
 
-Durante el trabajo aparecieron en la raíz `CONSUC PNG.png`, `LOGO CONSUC A.jpg.jpeg`, `LOGO CONSUC B.jpg.jpeg`, `LOGO CONSUC C.jpg.jpeg`, `LOGO CONSUC EDITABLE.pdf` y `LOGO CONSUC PNG.png`. Se conservan intactos y fuera de los commits de esta entrega. Sus variantes, resolución, transparencia y posibilidad de extracción vectorial quedan por revisar en la etapa visual; ya no se necesita solicitar un logo sin comprobar primero estos archivos.
+Los seis archivos de marca están ahora en `imgs/Logos`: `CONSUC PNG.png`, `LOGO CONSUC A.jpg.jpeg`, `LOGO CONSUC B.jpg.jpeg`, `LOGO CONSUC C.jpg.jpeg`, `LOGO CONSUC EDITABLE.pdf` y `LOGO CONSUC PNG.png`. El usuario autorizó únicamente los logos de esa carpeta. Se conservan los originales; revisar variantes, resolución, transparencia y extracción vectorial en la etapa visual.
+
+## Confirmaciones del usuario · 19 de noviembre de 2026
+
+- WhatsApp principal: +51 989 522 797. Guardado como `+51989522797`.
+- Teléfonos públicos: 989 522 797 y 992 568 444.
+- Correos públicos: operaciones@ucuyre.com, administracion@ucuyre.com y gerencia@ucuyre.com.
+- No colocar el brochure en la web, incluido su archivo o enlace de descarga.
+- Usar imágenes de referencia mientras el usuario solicita fotos originales al cliente. Identificarlas como «Imagen referencial», registrar su fuente y condiciones de uso y no presentarlas como trabajos de CONSUC.
+- Única carpeta autorizada de logos: `imgs/Logos`. Esto no autoriza los logos de clientes vistos en el brochure ni acredita una relación comercial publicable.
+
+Los contactos confirmados y la política de medios están en `src/content/company.json` y `src/content/media-policy.json`. La publicación de nombres de clientes o documentos AWS/SGS sigue pendiente y puede omitirse sin bloquear el desarrollo.

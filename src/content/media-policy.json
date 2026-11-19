@@ -1,0 +1,13 @@
+{
+  "confirmedOn": "2026-11-19",
+  "authorizedLogoDirectory": "imgs/Logos",
+  "clientLogosAuthorized": false,
+  "photographyMode": "reference_until_client_originals",
+  "referenceLabel": "Imagen referencial",
+  "referenceRequirements": [
+    "Identificar las imágenes de referencia en la propuesta.",
+    "No atribuir las escenas a trabajos, personal o instalaciones de CONSUC.",
+    "Registrar procedencia y condiciones de uso de cada imagen utilizada.",
+    "Preparar el reemplazo por fotografías originales aprobadas del cliente."
+  ]
+}
