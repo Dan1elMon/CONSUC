@@ -50,4 +50,6 @@
 
 ## Material pendiente
 
-Logo vectorial y variantes; archivos de fuentes con licencia; fotografías originales y permisos; fichas de proyectos; autorizaciones de clientes; evidencia AWS/SGS; brochure final aprobado; WhatsApp y responsables; enlaces sociales oficiales; política de privacidad y conservación. No hay archivos en las carpetas iniciales `imgs/` y `docs/` al comenzar esta tarea.
+Archivos de fuentes con licencia; fotografías originales y permisos; fichas de proyectos; autorizaciones de clientes; evidencia AWS/SGS; brochure final aprobado; WhatsApp y responsables; enlaces sociales oficiales; política de privacidad y conservación. No había archivos en las carpetas iniciales `imgs/` y `docs/` al comenzar esta tarea.
+
+Durante el trabajo aparecieron en la raíz `CONSUC PNG.png`, `LOGO CONSUC A.jpg.jpeg`, `LOGO CONSUC B.jpg.jpeg`, `LOGO CONSUC C.jpg.jpeg`, `LOGO CONSUC EDITABLE.pdf` y `LOGO CONSUC PNG.png`. Se conservan intactos y fuera de los commits de esta entrega. Sus variantes, resolución, transparencia y posibilidad de extracción vectorial quedan por revisar en la etapa visual; ya no se necesita solicitar un logo sin comprobar primero estos archivos.

@@ -1,0 +1,22 @@
+{
+  "public": [
+    { "path": "/", "label": "Inicio", "navigation": "main" },
+    { "path": "/nosotros", "label": "Nosotros", "navigation": "main" },
+    { "path": "/servicios", "label": "Servicios", "navigation": "main" },
+    { "path": "/servicios/[slug]", "label": "Detalle de servicio", "navigation": null },
+    { "path": "/proyectos", "label": "Proyectos", "navigation": "main" },
+    { "path": "/proyectos/[slug]", "label": "Detalle de proyecto", "navigation": null },
+    { "path": "/clientes", "label": "Clientes", "navigation": "footer" },
+    { "path": "/seguridad-calidad", "label": "Seguridad y calidad", "navigation": "main" },
+    { "path": "/contacto", "label": "Contacto", "navigation": "main" },
+    { "path": "/cotizar", "label": "Cotizar proyecto", "navigation": "cta" },
+    { "path": "/privacidad", "label": "Privacidad", "navigation": "footer" }
+  ],
+  "private": [
+    { "path": "/acceso", "authenticationRequired": false, "indexable": false },
+    { "path": "/admin", "authenticationRequired": true, "indexable": false },
+    { "path": "/admin/proyectos", "authenticationRequired": true, "indexable": false },
+    { "path": "/admin/contenido", "authenticationRequired": true, "indexable": false },
+    { "path": "/admin/consultas", "authenticationRequired": true, "indexable": false }
+  ]
+}

@@ -153,6 +153,6 @@ WhatsApp, cotización con adjuntos, brochure y panel son prioridades altas. El s
 
 Configurar entornos de desarrollo, pruebas y producción separados; migraciones versionadas, copias de seguridad con restauración verificada y secretos fuera de Git. Registrar errores sin contenido de adjuntos ni datos personales en logs. Añadir límites de tráfico y tamaños de archivo en el servidor. Medir errores de envío y entregabilidad de avisos.
 
-Antes de publicar se necesita confirmar teléfono de WhatsApp (el brochure solo identifica teléfonos), correos receptores, dominio, textos de privacidad, plazo de conservación, archivos originales de marca, permisos de imágenes/logos, casos reales y documentación AWS/SGS. Estos pendientes no bloquean diseñar o implementar con contenido en borrador; sí condicionan qué se puede publicar y qué contactos se pueden activar.
+Antes de publicar se necesita confirmar teléfono de WhatsApp (el brochure solo identifica teléfonos), correos receptores, dominio, textos de privacidad, plazo de conservación, permisos de imágenes/logos, casos reales y documentación AWS/SGS. Los archivos de marca que aparecieron en la raíz se revisarán antes de elegir variantes o pedir material adicional. Estos pendientes no bloquean diseñar o implementar con contenido en borrador; sí condicionan qué se puede publicar y qué contactos se pueden activar.
 
 Consultar `fuentes-y-contenido.md` para trazabilidad y `datos-y-flujos.md` para entidades, permisos y endpoints.

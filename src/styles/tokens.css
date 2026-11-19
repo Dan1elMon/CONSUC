@@ -1,0 +1,48 @@
+/* Base visual. Referencia: guia_estilo_y_disenio.md. */
+:root {
+  --color-primary: #1c2a39;
+  --color-primary-dark: #111a24;
+  --color-accent-orange: #f27d16;
+  --color-accent-orange-hover: #d96b0b;
+  --color-accent-green: #54b948;
+  --bg-main: #ffffff;
+  --bg-alt: #f4f6f8;
+  --bg-overlay: rgb(28 42 57 / 85%);
+  --text-heading: #1c2a39;
+  --text-body: #334155;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
+  /* Ajuste de contraste sobre naranja documentado en la arquitectura. */
+  --text-on-accent: #1c2a39;
+  --focus-on-light: #1c2a39;
+  --focus-on-dark: #ffffff;
+  --font-heading: 'Montserrat', 'Arial', sans-serif;
+  --font-body: 'Inter', 'Arial', sans-serif;
+  --font-size-body: 1rem;
+  --font-size-label: 0.875rem;
+  --font-size-h1: clamp(2rem, 1.25rem + 3vw, 3rem);
+  --font-size-h2: clamp(1.75rem, 1.25rem + 2vw, 2.25rem);
+  --font-size-h3: 1.375rem;
+  --font-size-section-number: 1.125rem;
+  --line-height-body: 1.6;
+  --line-height-heading: 1.15;
+  --heading-tracking: 0.02em;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --shadow-card: 0 4px 20px rgb(28 42 57 / 8%);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --content-max-width: 75rem;
+  --page-gutter: clamp(1rem, 4vw, 3rem);
+  --section-accent-width: 60px;
+  --section-accent-height: 4px;
+  --photo-label-border-width: 4px;
+  --service-bullet-size: 6px;
+  --control-min-height: 2.75rem;
+}

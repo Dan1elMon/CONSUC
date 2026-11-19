@@ -1,0 +1,26 @@
+{
+  "legalName": "CONSUC SAC",
+  "ruc": "20608565885",
+  "vendorCode": "215571",
+  "operatingSince": 2020,
+  "corporateServiceLines": 4,
+  "address": {
+    "street": "Barrio Los Álamos s/n",
+    "district": "Challhuahuacho",
+    "region": "Apurímac",
+    "country": "Perú"
+  },
+  "phones": ["+51989522797", "+51992568444"],
+  "emails": ["operaciones@ucuyre.com", "administracion@ucuyre.com", "gerencia@ucuyre.com"],
+  "whatsappNumber": null,
+  "inquiryRecipient": null,
+  "socialLinks": [],
+  "brochurePublicPath": null,
+  "publicationStatus": "draft",
+  "reviewStatus": "pending_confirmation",
+  "source": {
+    "document": "BROCHURE CONSUC SAC 2026.pdf",
+    "pages": [1, 2, 6],
+    "receivedOn": "2026-11-19"
+  }
+}

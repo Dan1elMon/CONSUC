@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:consuc:inquiry-input",
+  "title": "Entrada pública de contacto o cotización",
+  "description": "Contrato del payload JSON. Los archivos multipart se validan aparte en servidor. No admite estado, responsable ni privilegios enviados por el visitante.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["type", "name", "email", "message", "privacyAccepted", "privacyVersion"],
+  "properties": {
+    "type": { "enum": ["contact", "quote"] },
+    "name": { "type": "string", "minLength": 2, "maxLength": 120, "pattern": "\\S" },
+    "company": { "type": "string", "maxLength": 160 },
+    "email": { "type": "string", "format": "email", "maxLength": 254 },
+    "phone": { "type": "string", "pattern": "^\\+?[0-9 ()-]{7,25}$" },
+    "serviceSlug": {
+      "enum": ["ingenieria-y-diseno", "fabricacion-montaje-y-mantenimiento", "instalaciones-electricas", "construccion-y-reparacion", "servicios-de-apoyo-en-operaciones", "transporte-y-logistica"]
+    },
+    "location": { "type": "string", "minLength": 2, "maxLength": 240, "pattern": "\\S" },
+    "desiredDate": { "type": "string", "format": "date" },
+    "message": { "type": "string", "minLength": 20, "maxLength": 5000, "pattern": "\\S" },
+    "privacyAccepted": { "const": true },
+    "privacyVersion": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "\\S" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "type": { "const": "quote" } }, "required": ["type"] },
+      "then": { "required": ["serviceSlug", "location"] }
+    }
+  ],
+  "$comment": "El servidor normaliza espacios, valida formatos, comprueba privacyVersion contra la publicada y desiredDate contra la fecha en America/Lima. El esquema no autoriza archivos ni sustituye los controles del servidor."
+}

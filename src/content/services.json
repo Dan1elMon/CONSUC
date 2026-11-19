@@ -1,0 +1,83 @@
+[
+  {
+    "id": "engineering",
+    "slug": "ingenieria-y-diseno",
+    "title": "Ingeniería y diseño",
+    "summary": "Ingeniería de detalle, modelado BIM y 3D y levantamientos topográficos.",
+    "scope": ["Ingeniería de detalle y modelado 3D bajo el sistema BIM.", "Aplicaciones en metalmecánica, piping, obras civiles y eléctricas.", "Levantamiento topográfico."],
+    "whatsappMessage": "Hola, quisiera cotizar un servicio de ingeniería y diseño para mi proyecto.",
+    "order": 1,
+    "sourcePages": [3],
+    "publicationStatus": "draft",
+    "media": [],
+    "projectIds": []
+  },
+  {
+    "id": "fabrication",
+    "slug": "fabricacion-montaje-y-mantenimiento",
+    "title": "Fabricación, montaje y mantenimiento",
+    "summary": "Estructuras metálicas y equipos mecánicos para operaciones industriales.",
+    "scope": ["Ingeniería, fabricación y montaje de estructuras metálicas livianas, medianas y pesadas.", "Trabajos en acero al carbono y acero inoxidable.", "Equipos mecánicos para transporte, elevación, almacenamiento y molienda.", "Mantenimiento de acuerdo con el alcance confirmado para cada requerimiento."],
+    "editorialNotes": "Confirmar el desglose de mantenimiento. La referencia AWS requiere revisar norma y alcance antes de publicarla como afirmación técnica.",
+    "whatsappMessage": "Hola, necesito cotizar fabricación, montaje o mantenimiento de estructuras metálicas y equipos.",
+    "order": 2,
+    "sourcePages": [2, 3],
+    "publicationStatus": "draft",
+    "media": [],
+    "projectIds": []
+  },
+  {
+    "id": "electrical",
+    "slug": "instalaciones-electricas",
+    "title": "Instalaciones eléctricas",
+    "summary": "Sistemas eléctricos industriales, tableros, iluminación y puesta a tierra.",
+    "scope": ["Pruebas de continuidad de cableado de fuerza e instrumentación.", "Canalización de bandejas y cableado eléctrico industrial.", "Instalación de tableros para fuerza, control y transferencia automática.", "Diseño y mantenimiento de sistemas de puesta a tierra.", "Mantenimiento y reparación de cableados mineros.", "Diseño y montaje de iluminación interior y exterior."],
+    "whatsappMessage": "Hola, quisiera cotizar instalaciones o mantenimiento eléctrico para mi proyecto.",
+    "order": 3,
+    "sourcePages": [3],
+    "publicationStatus": "draft",
+    "media": [],
+    "projectIds": []
+  },
+  {
+    "id": "construction",
+    "slug": "construccion-y-reparacion",
+    "title": "Construcción y reparación",
+    "summary": "Obras civiles menores, módulos de alojamiento, drywall, pisos y acabados.",
+    "scope": ["Obras civiles menores: cercos perimétricos, veredas y canales de drenaje.", "Instalación de módulos de albergue tipo iglú.", "Drywall, baldosas y parquet.", "Pintura y acabados en instalaciones.", "Excavaciones menores y movimiento de tierras.", "Instalación de techos parabólicos."],
+    "whatsappMessage": "Hola, necesito cotizar trabajos de construcción o reparación.",
+    "order": 4,
+    "sourcePages": [4],
+    "publicationStatus": "draft",
+    "media": [],
+    "projectIds": []
+  },
+  {
+    "id": "operations",
+    "slug": "servicios-de-apoyo-en-operaciones",
+    "title": "Servicios de apoyo en operaciones",
+    "summary": "Señalización, control de polvo, almacenes, suministros, pañoles y vigías.",
+    "scope": ["Instalación y mantenimiento de señalización de seguridad.", "Control de polvo con riego de vías.", "Manejo de almacenes y suministros.", "Soporte con pañoles y vigías.", "Reparaciones menores de equipos y facilidades, según requerimiento."],
+    "editorialNotes": "Categoría adaptada del bloque servicios misceláneos. Las obras civiles se agrupan en construcción y reparación.",
+    "whatsappMessage": "Hola, quisiera cotizar servicios de apoyo en operaciones.",
+    "order": 5,
+    "sourcePages": [4],
+    "publicationStatus": "draft",
+    "media": [],
+    "projectIds": []
+  },
+  {
+    "id": "logistics",
+    "slug": "transporte-y-logistica",
+    "title": "Transporte y logística",
+    "summary": "Transporte de personal y carga, soporte logístico y almacenamiento.",
+    "scope": ["Transporte de personal y carga.", "Soporte logístico.", "Servicio de almacenamiento."],
+    "editorialNotes": "Confirmar evidencia y vigencia antes de anunciar unidades y conductores como homologados.",
+    "whatsappMessage": "Hola, necesito cotizar transporte de personal, carga o soporte logístico.",
+    "order": 6,
+    "sourcePages": [4],
+    "publicationStatus": "draft",
+    "media": [],
+    "projectIds": []
+  }
+]
