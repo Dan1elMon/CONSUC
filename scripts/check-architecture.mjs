@@ -35,10 +35,21 @@ assert.equal(inquiry.allOf[0].if.properties.type.const, 'quote');
 assert.deepEqual(inquiry.allOf[0].then.required, ['serviceSlug', 'location']);
 const allRoutes = [...routes.public, ...routes.private];
 unique(allRoutes.map((r) => r.path), 'Rutas');
-assert.ok(routes.public.some((r) => r.path === '/servicios/[slug]'));
-assert.ok(routes.public.some((r) => r.path === '/cotizar'));
+assert.deepEqual(routes.public.map((r) => r.path), ['/'], 'La landing solo tiene una ruta principal');
+assert.deepEqual(routes.private, [], 'La landing no incluye panel ni acceso privado');
+unique(routes.sections.map((section) => section.anchor), 'Anclas');
+for (const section of routes.sections) {
+  assert.match(section.anchor, /^[a-z]+(?:-[a-z]+)*$/);
+  assert.equal(typeof section.optional, 'boolean');
+}
+for (const anchor of ['inicio', 'nosotros', 'servicios', 'contacto']) {
+  assert.ok(routes.sections.some((section) => section.anchor === anchor && !section.optional));
+}
 for (const route of allRoutes) assert.ok(route.path.startsWith('/'));
-for (const route of routes.private) {
+const futureRoutes = [...routes.future.public, ...routes.future.private];
+unique(futureRoutes.map((r) => r.path), 'Rutas futuras');
+for (const route of futureRoutes) assert.ok(route.path.startsWith('/'));
+for (const route of routes.future.private) {
   assert.equal(route.indexable, false);
   if (route.path.startsWith('/admin')) assert.equal(route.authenticationRequired, true);
 }
@@ -52,5 +63,5 @@ assert.equal(company.publicationStatus, 'draft');
 assert.ok(company.phones.every((phone) => /^\+51\d{9}$/.test(phone)));
 for (const color of ['#1c2a39', '#f27d16', '#54b948', '#f4f6f8']) assert.ok(css.includes(color));
 assert.ok(css.includes('--text-on-accent: #1c2a39'));
-console.log('Arquitectura coherente: 6 servicios, rutas únicas, contrato alineado, inventario en borrador y tokens de marca.');
+console.log('Arquitectura coherente: landing con anclas únicas, 6 servicios, ampliaciones separadas, contrato futuro alineado y tokens de marca.');
 console.log('Esta comprobación no valida una API, sesiones, permisos en ejecución ni el esquema completo de solicitudes.');

@@ -1,22 +1,133 @@
 {
   "public": [
-    { "path": "/", "label": "Inicio", "navigation": "main" },
-    { "path": "/nosotros", "label": "Nosotros", "navigation": "main" },
-    { "path": "/servicios", "label": "Servicios", "navigation": "main" },
-    { "path": "/servicios/[slug]", "label": "Detalle de servicio", "navigation": null },
-    { "path": "/proyectos", "label": "Proyectos", "navigation": "main" },
-    { "path": "/proyectos/[slug]", "label": "Detalle de proyecto", "navigation": null },
-    { "path": "/clientes", "label": "Clientes", "navigation": "footer" },
-    { "path": "/seguridad-calidad", "label": "Seguridad y calidad", "navigation": "main" },
-    { "path": "/contacto", "label": "Contacto", "navigation": "main" },
-    { "path": "/cotizar", "label": "Cotizar proyecto", "navigation": "cta" },
-    { "path": "/privacidad", "label": "Privacidad", "navigation": "footer" }
+    {
+      "path": "/",
+      "label": "Inicio",
+      "navigation": "main"
+    }
   ],
-  "private": [
-    { "path": "/acceso", "authenticationRequired": false, "indexable": false },
-    { "path": "/admin", "authenticationRequired": true, "indexable": false },
-    { "path": "/admin/proyectos", "authenticationRequired": true, "indexable": false },
-    { "path": "/admin/contenido", "authenticationRequired": true, "indexable": false },
-    { "path": "/admin/consultas", "authenticationRequired": true, "indexable": false }
-  ]
+  "private": [],
+  "sections": [
+    {
+      "anchor": "inicio",
+      "label": "Inicio",
+      "optional": false
+    },
+    {
+      "anchor": "nosotros",
+      "label": "Nosotros",
+      "optional": false
+    },
+    {
+      "anchor": "servicios",
+      "label": "Servicios",
+      "optional": false
+    },
+    {
+      "anchor": "galeria",
+      "label": "Galería",
+      "optional": true
+    },
+    {
+      "anchor": "clientes",
+      "label": "Clientes",
+      "optional": true
+    },
+    {
+      "anchor": "seguridad-calidad",
+      "label": "Seguridad y calidad",
+      "optional": false
+    },
+    {
+      "anchor": "contacto",
+      "label": "Contacto",
+      "optional": false
+    }
+  ],
+  "future": {
+    "public": [
+      {
+        "path": "/",
+        "label": "Inicio",
+        "navigation": "main"
+      },
+      {
+        "path": "/nosotros",
+        "label": "Nosotros",
+        "navigation": "main"
+      },
+      {
+        "path": "/servicios",
+        "label": "Servicios",
+        "navigation": "main"
+      },
+      {
+        "path": "/servicios/[slug]",
+        "label": "Detalle de servicio",
+        "navigation": null
+      },
+      {
+        "path": "/proyectos",
+        "label": "Proyectos",
+        "navigation": "main"
+      },
+      {
+        "path": "/proyectos/[slug]",
+        "label": "Detalle de proyecto",
+        "navigation": null
+      },
+      {
+        "path": "/clientes",
+        "label": "Clientes",
+        "navigation": "footer"
+      },
+      {
+        "path": "/seguridad-calidad",
+        "label": "Seguridad y calidad",
+        "navigation": "main"
+      },
+      {
+        "path": "/contacto",
+        "label": "Contacto",
+        "navigation": "main"
+      },
+      {
+        "path": "/cotizar",
+        "label": "Cotizar proyecto",
+        "navigation": "cta"
+      },
+      {
+        "path": "/privacidad",
+        "label": "Privacidad",
+        "navigation": "footer"
+      }
+    ],
+    "private": [
+      {
+        "path": "/acceso",
+        "authenticationRequired": false,
+        "indexable": false
+      },
+      {
+        "path": "/admin",
+        "authenticationRequired": true,
+        "indexable": false
+      },
+      {
+        "path": "/admin/proyectos",
+        "authenticationRequired": true,
+        "indexable": false
+      },
+      {
+        "path": "/admin/contenido",
+        "authenticationRequired": true,
+        "indexable": false
+      },
+      {
+        "path": "/admin/consultas",
+        "authenticationRequired": true,
+        "indexable": false
+      }
+    ]
+  }
 }

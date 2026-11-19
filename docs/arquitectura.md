@@ -1,158 +1,167 @@
 # Arquitectura del proyecto CONSUC SAC
 
-Estado: base de arquitectura, previa a la implementación de la interfaz y los servicios.
-Fecha: 19 de noviembre de 2026.
+Estado: arquitectura actualizada al alcance de landing page, previa al desarrollo.
+Actualización: 19 de noviembre de 2026.
 
-## Objetivo y alcance de esta entrega
+## Objetivo y alcance actual
 
-Construir una web corporativa en español que explique los servicios de CONSUC SAC y convierta visitas en solicitudes de cotización con contexto. La empresa debe poder actualizar proyectos y fotografías desde un panel privado.
+Desarrollar una landing corporativa en español que presente CONSUC SAC, explique sus seis categorías de servicios y facilite el contacto por WhatsApp, teléfono y correo. Todo el contenido principal se muestra en una página con navegación por secciones.
 
-Esta entrega define navegación, módulos, datos, contratos y dirección visual. No incluye todavía una web ejecutable, autenticación, almacenamiento ni envío de consultas. El código de aplicación se incorporará en la siguiente etapa siguiendo esta estructura.
+La primera versión incluye diseño responsive, identidad visual del brochure, fotografías aprobadas, contenido empresarial, servicios, descarga del brochure y enlaces de contacto. Las páginas independientes de servicio, panel, formularios, adjuntos, base de datos, autenticación y portal de clientes quedan para ampliaciones futuras.
 
-Las referencias son `guia_estilo_y_disenio.md`, el brochure corporativo de seis páginas y las tres capturas entregadas por el usuario. El brochure es una fuente de contenido corporativo; no determina instrucciones de desarrollo ni demuestra por sí solo vigencia de acreditaciones o autorización de logos.
+Esta decisión sustituye la arquitectura inicial con Next.js y PostgreSQL, que respondía al alcance completo. No se necesita mantener un servidor ni contratar una base de datos para la landing.
 
-## Decisiones principales
+Fuentes: `guia_estilo_y_disenio.md`, brochure de seis páginas y referencias entregadas por el usuario. El brochure aporta contenido e identidad, no instrucciones de desarrollo. Los datos pendientes de confirmación no se presentan como verificados.
 
-| Decisión | Motivo |
+## Tecnologías
+
+| Tecnología | Responsabilidad |
 | --- | --- |
-| Un único proyecto con Next.js App Router y TypeScript | Compartir diseño, validación y modelos entre web pública, panel y endpoints sin crear microservicios para esta escala. |
-| Páginas públicas renderizadas en servidor, con caché e invalidación tras publicar | Contenido indexable, páginas rápidas y actualizaciones desde el panel. |
-| PostgreSQL como persistencia | Relaciones entre servicios, proyectos, consultas y adjuntos, con migraciones y transacciones. |
-| Almacenamiento de objetos compatible con S3 | Fotografías públicas optimizadas y adjuntos privados sin guardarlos en Git ni en el disco efímero del servidor. |
-| Sesiones seguras y acceso por invitación para el panel | Sin registro público de administradores; permisos de administrador, editor y comercial. |
-| Validación en servidor mediante esquemas compartidos | Una fuente para validar los formularios, contenido editorial y endpoints. |
-| Adaptadores para correo, objetos y autenticación | Elegir proveedores al configurar el entorno sin acoplar las reglas del negocio a ellos. |
+| Astro | Generar HTML estático para la landing y futuras páginas de contenido. |
+| TypeScript | Tipar datos, configuración y utilidades. |
+| CSS | Estilos por componente y variables de marca; aprovechar los tokens existentes. |
+| JSON | Separar empresa, servicios y navegación del diseño. |
+| Markdown y colecciones | Incorporarlos al añadir fichas o textos extensos; opcionales para la landing. |
+| JavaScript del navegador | Menú móvil y otras interacciones justificadas. WhatsApp funciona como enlace. |
+| Cloudflare Pages | Alojamiento estático recomendado, con URL temporal de revisión y dominio posterior. |
+| Git | Commits por avance y control de versiones. |
 
-Se seleccionarán versiones compatibles y fijadas en el archivo de bloqueo al iniciar la implementación. No se instalan dependencias ni se escoge proveedor de alojamiento en esta etapa. El despliegue previsto requiere ejecución en servidor; una exportación estática no cubriría el panel ni las cotizaciones.
+Seleccionar versiones estables compatibles y fijarlas en un archivo de bloqueo al inicializar Astro. Esta actualización no instala dependencias. Incorporar React, CMS o servicios externos solo cuando una función los requiera.
 
-## Mapa del sistema
+## Flujo del sistema
 
 ```mermaid
-flowchart TD
-  Visitante[Visitante] --> Publica[Web pública]
-  Equipo[Equipo CONSUC] --> Panel[Panel privado]
-  Publica --> Lectura[Servicios y proyectos publicados]
-  Publica --> Consultas[Recepción de cotizaciones]
-  Publica --> WhatsApp[WhatsApp con mensaje por servicio]
-  Panel --> Editorial[Gestión editorial y permisos]
-  Panel --> Seguimiento[Seguimiento de consultas]
-  Lectura --> DB[(PostgreSQL)]
-  Consultas --> DB
-  Editorial --> DB
-  Seguimiento --> DB
-  Editorial --> Publicos[Fotografías y documentos públicos]
-  Consultas --> Privados[Adjuntos privados]
-  Seguimiento --> Privados
-  Consultas --> Outbox[Cola transaccional de avisos]
-  Outbox --> Correo[Proveedor de correo]
+flowchart LR
+  Datos[Contenido y fotografías] --> Build[Compilación Astro]
+  Componentes[Componentes y CSS] --> Build
+  Build --> HTML[Archivos estáticos en dist]
+  HTML --> Pages[Cloudflare Pages]
+  Visitante[Visitante] --> Pages
+  Pages --> WhatsApp[Enlace externo a WhatsApp]
+  Pages --> Contacto[Teléfono y correo]
+  Pages --> PDF[Brochure aprobado]
 ```
 
-WhatsApp es una vía externa de contacto: hacer clic no prueba que se envió un mensaje ni crea automáticamente una consulta en el panel.
+Los cambios de contenido requieren compilar y desplegar de nuevo. Inicialmente el desarrollador actualiza los archivos mediante Git. WhatsApp abre una conversación con mensaje predefinido; no requiere API, bot ni servidor propio. El clic no acredita envío del mensaje ni genera una consulta registrada.
 
-## Navegación y páginas
+## Ruta y secciones
 
-| Ruta | Contenido y comportamiento |
+Ruta pública inicial: `/`. El menú usa anclas; los slugs de servicios son identificadores de contenido y no crean páginas de detalle en esta etapa.
+
+| Ancla | Contenido |
 | --- | --- |
-| `/` | Presentación, seis servicios, proyectos publicados, trayectoria desde 2020, ubicación, CTA «Cotizar proyecto», WhatsApp y descarga del brochure. |
-| `/nosotros` | Historia, misión, visión, equipo cuando exista material aprobado y presencia en Challhuahuacho, Apurímac. |
-| `/servicios` | Índice de seis categorías con descripción y acceso a su detalle. |
-| `/servicios/[slug]` | Qué realizamos, alcance, fotos aprobadas, proyectos vinculados, cotización con servicio preseleccionado y WhatsApp contextual. |
-| `/proyectos` | Galería de trabajos documentados, filtrable por servicio y sector; estado vacío si aún no hay casos aprobados. |
-| `/proyectos/[slug]` | Descripción, ubicación autorizada, alcance, servicio, fechas, fotos y resultados comprobables. No inventar casos a partir de fotos del brochure. |
-| `/clientes` | Empresas mencionadas en el brochure, con aprobación editorial y permiso de publicación del nombre o logo. |
-| `/seguridad-calidad` | Compromisos de seguridad y ambiente, documentos y homologaciones revisados; alcance y vigencia visibles cuando corresponda. |
-| `/contacto` | Teléfonos, correos, dirección y formulario de contacto. No inventar coordenadas ni URL de Facebook. |
-| `/cotizar` | Formulario con servicio, ubicación, fecha deseada, requerimiento y adjuntos. |
-| `/privacidad` | Información sobre el tratamiento de consultas y archivos, completada antes del lanzamiento. |
-| `/admin` | Resumen privado; acceso autenticado. |
-| `/admin/proyectos` | Crear, editar, previsualizar, publicar y archivar proyectos y fotografías. |
-| `/admin/contenido` | Servicios, empresa, clientes, brochure y documentos de seguridad/calidad. |
-| `/admin/consultas` | Bandeja, detalle, asignación, notas y seguimiento. |
+| `#inicio` | Presentación, imagen principal y CTA de WhatsApp. |
+| `#nosotros` | Empresa, trayectoria desde 2020, ubicación, misión y visión. |
+| `#servicios` | Seis categorías con resumen, alcance y WhatsApp contextual. |
+| `#galeria` | Fotografías de operaciones autorizadas; opcional según material disponible. |
+| `#clientes` | Nombres o logos aprobados; omitir mientras falte confirmar su publicación. |
+| `#seguridad-calidad` | Compromisos documentados y acreditaciones solo con alcance y vigencia revisados. |
+| `#contacto` | Teléfonos, correos, dirección, WhatsApp y descarga del brochure. |
 
-Los slugs de servicio están definidos en `src/content/services.json`. Las rutas dinámicas deben devolver 404 para slugs inexistentes. No se crearán páginas vacías indexables de proyectos, clientes o documentos.
+El pie contiene razón social, RUC y enlaces útiles. El botón «Cotizar por WhatsApp» abre el contacto externo. La descarga se habilita tras aprobar el PDF y copiarlo a `public/brochure/`. No inventar fichas de proyectos a partir de fotografías.
 
-El menú principal contiene Inicio, Nosotros, Servicios, Proyectos, Seguridad y calidad y Contacto. Clientes puede figurar en Inicio y en el pie; Cotizar será una acción destacada. En móvil, el menú debe ser operable por teclado y cerrar con Escape.
+Las seis categorías se conservan en `src/content/services.json`. `src/content/routes.json` distingue las secciones actuales de las rutas de una posible ampliación.
 
-## Organización prevista del código de aplicación
+## Estructura prevista
 
 ```text
+public/
+  brochure/                    # PDF aprobado
+  favicon.svg
 src/
-  app/
-    (public)/                  # Layout corporativo y rutas públicas
-      page.tsx
-      nosotros/page.tsx
-      servicios/page.tsx
-      servicios/[slug]/page.tsx
-      proyectos/page.tsx
-      proyectos/[slug]/page.tsx
-      clientes/page.tsx
-      seguridad-calidad/page.tsx
-      contacto/page.tsx
-      cotizar/page.tsx
-      privacidad/page.tsx
-    (auth)/acceso/page.tsx
-    admin/                     # Layout privado; autorización también en servidor
-      proyectos/
-      contenido/
-      consultas/
-    api/                       # Contratos descritos en docs/datos-y-flujos.md
-    layout.tsx
-    not-found.tsx
-    sitemap.ts
-    robots.ts
+  assets/                      # Logos y fotografías para optimización
   components/
-    ui/                        # Botones, campos, diálogos, estados y foco
-    layout/                    # Cabecera, menú, pie y breadcrumbs
-    sections/                  # Hero, títulos numerados, galerías y CTA
-  modules/
-    company/                   # Identidad, contactos y revisión editorial
-    services/                  # Catálogo, contenido y relaciones
-    projects/                  # Casos, fotografías y publicación
-    inquiries/                 # Cotizaciones, estados y asignaciones
-    media/                     # Archivos, revisión y autorización de descargas
-    credentials/               # Acreditaciones y vigencias
-    identity/                  # Sesiones, invitaciones y roles
-  server/
-    db/                        # Cliente, repositorios y transacciones
-    storage/                   # Adaptador de objetos públicos/privados
-    mail/                      # Adaptador de avisos y reintentos
-  content/                     # Inventario inicial trazable; no base de datos activa
-  styles/                      # Tokens y estilos compartidos
-  contracts/                   # Esquemas de intercambio iniciales
+    layout/                    # Cabecera, menú y pie
+    sections/                  # Inicio, Nosotros, Servicios, Galería y Contacto
+    ui/                        # Botones, tarjetas y enlace WhatsApp
+  content/
+    company.json               # Empresa y contactos
+    services.json              # Seis servicios
+    routes.json                # Ruta, anclas y ampliaciones
+  layouts/
+    BaseLayout.astro           # HTML base, metadatos y estilos
+  pages/
+    index.astro                # Composición de la landing
+    404.astro
+  lib/
+    whatsapp.ts                # Generación y codificación de enlaces
+  styles/
+    tokens.css
+    global.css
+  contracts/
+    inquiry.schema.json        # Referencia futura, fuera de la landing
+scripts/
+docs/
+astro.config.mjs
+tsconfig.json
+package.json
 ```
 
-Los archivos de contenido, contratos y tokens ya se incluyen como base revisable. El árbol restante describe la implementación futura: no se crean archivos de aplicación vacíos.
+Este árbol es una estructura de implementación, no una aplicación ya creada. Actualmente existen JSON, tokens, contrato futuro y comprobación de arquitectura. Astro y la interfaz aún no están instalados.
 
-Las páginas componen vistas; las reglas de publicación, permisos y consulta viven en módulos. Los módulos usan repositorios y adaptadores del servidor. El navegador no importa clientes de base de datos, secretos o claves del almacenamiento. Los datos iniciales podrán importarse mediante un seed idempotente; después el panel y PostgreSQL serán la fuente editorial única, sin doble edición entre JSON y base de datos.
+Las secciones reciben datos y componen componentes. Leer contactos de una sola fuente; evitar números y correos repetidos en el marcado. Mantener las utilidades independientes del contenido editorial. La escala inicial no requiere microservicios, monorepositorio ni capas de acceso a bases de datos.
 
-## Identidad visual y accesibilidad
+## Diseño, contenido y accesibilidad
 
-Se preservan azul `#1C2A39`, naranja `#F27D16`, verde `#54B948`, blanco y gris hielo de la guía. Montserrat para títulos e Inter para cuerpo, con fuentes locales cuando se incorporen sus archivos. El cuerpo parte de 16 px, los títulos se adaptan al ancho mediante `clamp()` y el contenido se organiza en bloques modulares.
+Preservar azul `#1C2A39`, naranja `#F27D16`, verde `#54B948`, blanco y gris hielo. Usar Montserrat e Inter cuando se incorporen archivos con licencia, con alternativas del sistema. Cuerpo desde 16 px y títulos fluidos mediante `clamp()`.
 
-Se conservan encabezados numerados, subrayados de 60 × 4 px, viñetas cuadradas y fotos con radio de 10 px y etiqueta azul con borde naranja. Las fotos deben ser reales, tener texto alternativo y autorización. No se usan imágenes generadas para representar trabajos de CONSUC.
+Conservar encabezados numerados, subrayados de 60 × 4 px, viñetas cuadradas, fotos con radio de 10 px y etiquetas azules con borde naranja. Ajuste a la guía: texto azul oscuro sobre botones naranjas para mejorar el contraste. Distinguir las cuatro líneas corporativas del brochure de las seis categorías web.
 
-Dos ajustes explícitos a la guía: las seis categorías web no deben presentarse como si fueran la cifra histórica de cuatro líneas corporativas; y el texto de los botones naranjas será azul oscuro porque el blanco sobre el naranja de marca no alcanza contraste suficiente para texto normal. Verde y naranja se usan como acentos, sin depender solo del color para comunicar estados. Los tokens reflejan estos ajustes.
+Revisar las variantes de logo existentes en la raíz; conservar originales y generar derivados optimizados. Imágenes con tamaños adecuados, dimensiones declaradas y formatos modernos; carga diferida fuera de la vista inicial, sin diferir la imagen principal. Usar fotos reales autorizadas, con texto alternativo. No representar trabajos de CONSUC con imágenes generadas.
 
-La interfaz debe tener foco visible, enlace para saltar al contenido, labels reales, errores asociados al campo y estados de envío anunciados. El formulario conservará los datos ante errores. Se validará a 360, 768 y 1440 px y con navegación por teclado. La previsualización editorial no será indexable ni pública.
+HTML semántico, un H1, jerarquía de títulos, enlace para saltar al contenido y foco visible. Menú móvil con teclado, estado expandido y cierre con Escape. Respetar movimiento reducido.
 
-## Etapas de implementación y criterios de salida
+Clientes, AWS, SGS y código vendor siguen `fuentes-y-contenido.md`. No inventar resultados, coordenadas o enlaces sociales. Si falta material, continuar con las demás secciones y omitir lo pendiente de confirmación.
 
-| Etapa | Entrega | Verificación para completarla |
-| --- | --- | --- |
-| 0 · Arquitectura (actual) | Mapa, contratos, inventario del brochure, tokens, límites y fases. | JSON y relaciones de servicios/rutas coherentes; commits revisables. |
-| 1 · Web pública | Layout responsive, Inicio, Nosotros, seis detalles de servicio, navegación, estados vacíos y brochure descargable aprobado. | Compilación, navegación sin enlaces rotos, revisión móvil/escritorio, teclado, metadatos y contenido real. |
-| 2 · Captación | WhatsApp confirmado, contacto/cotización, archivos privados y avisos persistentes. | Prueba completa de envío, errores, adjuntos rechazados, duplicados, permisos y fallo de correo sin pérdida de solicitud. |
-| 3 · Autogestión | Panel privado para proyectos, fotos, contenido y documentos. | Pruebas de roles, borradores, publicación, retirada e invalidación de caché. |
-| 4 · Seguimiento | Bandeja, responsable, notas e historial de estados. | Un usuario sin permiso no accede a consultas/adjuntos; cada cambio queda auditado. |
-| Opcional | Bolsa de trabajo y recepción de CV. | Alcance, tratamiento de CV y responsables definidos antes de implementarla. |
-| Segunda etapa | Portal privado para clientes, documentos y avances por proyecto. | Aislamiento por cliente/proyecto, invitaciones y autorización por recurso. |
+## Publicación y posicionamiento
 
-WhatsApp, cotización con adjuntos, brochure y panel son prioridades altas. El seguimiento avanzado tiene prioridad media. Se recomienda completar las etapas 1–3 antes de lanzar el conjunto solicitado; no se anuncia ningún flujo como disponible hasta que funcione de extremo a extremo.
+Desarrollar localmente primero. Se recomienda Cloudflare Pages para la primera propuesta, con URL temporal `pages.dev`, y dominio propio al aprobar la versión final. Esta actualización documental no publica el sitio ni cambia la visibilidad del repositorio.
 
-## Operación y decisiones pendientes para el lanzamiento
+Compilación prevista: `npm run build`; salida `dist/`. El despliegue desde Git se configura cuando exista acceso autorizado a las plataformas. Una vez vinculado, un push a la rama elegida puede publicar cambios; los commits locales se mantienen separados de la publicación.
 
-Configurar entornos de desarrollo, pruebas y producción separados; migraciones versionadas, copias de seguridad con restauración verificada y secretos fuera de Git. Registrar errores sin contenido de adjuntos ni datos personales en logs. Añadir límites de tráfico y tamaños de archivo en el servidor. Medir errores de envío y entregabilidad de avisos.
+Astro también puede generar una versión para GitHub Pages. Si se elige, configurar URL y ruta base del repositorio y comprobar rutas de imágenes/PDF y condiciones de uso. No es necesario resolverlo para iniciar el desarrollo local.
 
-Antes de publicar se necesita confirmar teléfono de WhatsApp (el brochure solo identifica teléfonos), correos receptores, dominio, textos de privacidad, plazo de conservación, permisos de imágenes/logos, casos reales y documentación AWS/SGS. Los archivos de marca que aparecieron en la raíz se revisarán antes de elegir variantes o pedir material adicional. Estos pendientes no bloquean diseñar o implementar con contenido en borrador; sí condicionan qué se puede publicar y qué contactos se pueden activar.
+Incluir título, descripción, idioma, favicon y metadatos para compartir. Configurar URL canónica y sitemap con el dominio definitivo. Las vistas de revisión usarán `noindex`, que no equivale a privacidad ni control de acceso. No publicar material confidencial.
 
-Consultar `fuentes-y-contenido.md` para trazabilidad y `datos-y-flujos.md` para entidades, permisos y endpoints.
+No añadir analítica, cookies de seguimiento, formularios o mapas de terceros por defecto. Revisar sus implicaciones si se solicitan. Dominio y cuentas deben quedar bajo control del cliente o con un acuerdo claro de administración; no hace falta comprar dominio para empezar.
+
+## Verificación de entrega
+
+- Catálogo de seis servicios coherente y navegación mediante anclas.
+- Compilación y comprobación de tipos tras instalar Astro.
+- Revisión visual a 360, 768 y 1440 px, sin desbordamientos.
+- Teclado, foco, menú móvil y jerarquía de títulos comprobados.
+- WhatsApp con número confirmado, mensaje por servicio y codificación correcta; verificar destinos sin enviar mensajes.
+- Teléfonos, correos, imágenes, anclas y PDF sin enlaces rotos.
+- Contenido aprobado y metadatos de producción antes de publicar.
+
+`node scripts/check-architecture.mjs` verifica el inventario inicial; no certifica una interfaz terminada ni servicios inexistentes. No ejecutar pruebas de API, usuarios o base de datos que no forman parte de la landing.
+
+## Recursos disponibles y datos necesarios
+
+Ya disponibles: guía visual, brochure original en el escritorio, catálogo inicial, contactos del brochure, tokens CSS y seis archivos de logo en la raíz. Revisar estos recursos antes de pedir material adicional.
+
+| Pendiente | Momento y tratamiento |
+| --- | --- |
+| WhatsApp principal con código de país | Necesario para activar CTA finales. Los dos teléfonos del brochure no identifican cuál usa WhatsApp. El diseño puede avanzar sin asumir un número. |
+| Confirmar teléfonos, correos y dirección públicos | Antes de revisión final; usar el inventario existente como borrador. |
+| Fotos originales y cuáles corresponden a trabajos propios | Revisar primero el brochure y aprovechar material autorizado. Mejoran la galería, pero no bloquean la estructura. |
+| Clientes/logos y afirmaciones AWS/SGS que se pueden publicar | Confirmar antes de mostrar esos elementos; pueden omitirse mientras se revisan. |
+| PDF final autorizado para descarga | Ya existe el brochure; confirmar que puede publicarse y no requiere cambios. |
+| Dominio y acceso al repositorio/alojamiento | Solo al configurar despliegue, mediante autorización de las plataformas. No solicitar contraseñas o tokens por el chat. |
+
+Se puede comenzar la estructura y el diseño con el material existente. Los pendientes condicionan activar contactos y publicar elementos concretos, no inicializar Astro. La variante de logo se elige tras revisar los originales y se presenta en la propuesta visual.
+
+## Evolución posterior
+
+| Necesidad | Ampliación |
+| --- | --- |
+| Más páginas y casos | Rutas de servicios/proyectos y colecciones de contenido. |
+| Edición por CONSUC | CMS conectado a Astro y reconstrucción o actualización tras publicar. |
+| Cotizaciones y adjuntos | Backend o rutas de servidor, validación, protección contra abuso, archivos privados y persistencia. |
+| Seguimiento | Usuarios, permisos y base de datos según el flujo comercial definido. |
+| Portal de clientes | Acceso por cliente/proyecto y posible aplicación independiente; evaluar Next.js al concretar ese alcance. |
+
+Astro admite rutas de servidor mediante adaptador; incorporarlas requiere revisar alojamiento y costos. No asumir que un portal completo se obtiene automáticamente de la landing ni que todas las funciones futuras caben en hosting estático gratuito.
+
+`docs/datos-y-flujos.md` y `src/contracts/inquiry.schema.json` quedan como referencias futuras, no requisitos de esta entrega.

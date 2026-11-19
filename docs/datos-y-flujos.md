@@ -1,6 +1,6 @@
 # Datos, permisos y flujos
 
-Especificación de implementación. No hay una base de datos, API ni panel desplegados todavía.
+Referencia de ampliación futura, fuera del alcance actual de landing page. La decisión vigente es Astro estático con contacto por WhatsApp; consultar `arquitectura.md`. No implementar estas entidades, roles ni endpoints durante la primera etapa. No hay una base de datos, API ni panel desplegados todavía.
 
 ## Entidades
 
