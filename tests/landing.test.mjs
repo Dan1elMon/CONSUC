@@ -38,7 +38,7 @@ test('la propuesta no publica brochure, formularios ni clientes sin autorizació
   assert.ok(html.includes('noindex,nofollow'), 'La propuesta no debe indexarse por defecto');
 });
 
-test('imágenes locales disponibles, con texto alternativo y referencias identificadas', async () => {
+test('imágenes locales disponibles, con texto alternativo y sin etiquetas referenciales', async () => {
   const images = [...html.matchAll(/<img\b[^>]*>/g)].map(match => match[0]);
   assert.ok(images.length >= 5);
   for (const image of images) {
@@ -49,7 +49,7 @@ test('imágenes locales disponibles, con texto alternativo y referencias identif
     assert.match(image, /\bwidth="\d+"/);
     assert.match(image, /\bheight="\d+"/);
   }
-  assert.ok((html.match(/Imagen referencial/g) || []).length >= 5);
+  assert.doesNotMatch(html, /referencial/i);
 });
 
 test('favicon, recursos y regreso desde 404 respetan la ruta base', async () => {

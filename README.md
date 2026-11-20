@@ -6,7 +6,7 @@ Landing corporativa de ingeniería, construcción, mantenimiento y transporte pa
 
 Primera versión funcional para revisión local. Incluye Inicio, Nosotros, seis servicios con alcance desplegable, compromisos de seguridad/calidad/ambiente, galería referencial y contacto por WhatsApp, teléfono y correo. Menú móvil accesible y fuentes servidas localmente.
 
-WhatsApp confirmado: +51 989 522 797. El brochure no está en la web. Solo se usan logos de `imgs/Logos`; no se publican logos de clientes ni acreditaciones no verificadas. Las fotos de referencia están rotuladas; su procedencia se registra en [Recursos visuales](docs/recursos-visuales.md).
+WhatsApp confirmado: +51 989 522 797. El brochure no está en la web. Solo se usan logos de `imgs/Logos`; no se publican logos de clientes ni acreditaciones no verificadas. Las fotos de referencia se muestran sin etiquetas por solicitud del usuario; su procedencia se registra en [Recursos visuales](docs/recursos-visuales.md).
 
 El código está en [Dan1elMon/CONSUC](https://github.com/Dan1elMon/CONSUC). Se incluye un workflow para compartir el avance mediante GitHub Pages; la primera publicación requiere activarlo como se indica abajo. El panel, la base de datos y los formularios quedan fuera del alcance.
 

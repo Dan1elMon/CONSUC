@@ -5,14 +5,14 @@ import welding from '../../assets/references/soldadura.jpg';
 import mining from '../../assets/references/mineria.jpg';
 import SectionTitle from '../ui/SectionTitle.astro';
 const images = [
-  { image: mining, title: 'MINERÍA E INDUSTRIA', alt: 'Vista aérea de una explotación minera, imagen referencial' },
-  { image: welding, title: 'METALMECÁNICA', alt: 'Soldador trabajando una estructura metálica, imagen referencial' },
-  { image: construction, title: 'CONSTRUCCIÓN', alt: 'Obra civil en ejecución, imagen referencial' },
+  { image: mining, title: 'MINERÍA E INDUSTRIA', alt: 'Vista aérea de una explotación minera' },
+  { image: welding, title: 'METALMECÁNICA', alt: 'Soldador trabajando una estructura metálica' },
+  { image: construction, title: 'CONSTRUCCIÓN', alt: 'Obra civil en ejecución' },
 ];
 ---
 <section class="section gallery" id="galeria" aria-label="Ámbitos de nuestros servicios">
   <div class="container">
-    <div class="section-heading-row"><SectionTitle number="04" eyebrow="ÁMBITOS DE TRABAJO" title="DONDE TU PROYECTO NOS NECESITA." /><p>Imágenes referenciales de los sectores<br />a los que se orientan nuestros servicios.</p></div>
-    <div class="gallery-grid">{images.map(item => <figure><Image src={item.image} alt={item.alt} widths={[480, 720, 960]} sizes="(max-width: 600px) 100vw, 33vw" format="webp" loading="lazy" /><figcaption class="photo-tag">{item.title}<span>Imagen referencial</span></figcaption></figure>)}</div>
+    <div class="section-heading-row"><SectionTitle number="04" eyebrow="ÁMBITOS DE TRABAJO" title="DONDE TU PROYECTO NOS NECESITA." /><p>Los sectores a los que se orientan<br />nuestros servicios.</p></div>
+    <div class="gallery-grid">{images.map(item => <figure><Image src={item.image} alt={item.alt} widths={[480, 720, 960]} sizes="(max-width: 600px) 100vw, 33vw" format="webp" loading="lazy" /><figcaption class="photo-tag">{item.title}</figcaption></figure>)}</div>
   </div>
 </section>
