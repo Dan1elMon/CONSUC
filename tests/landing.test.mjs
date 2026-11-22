@@ -55,23 +55,29 @@ test('imágenes locales disponibles, con texto alternativo y sin etiquetas refer
 test('clientes autorizados aparecen en el orden solicitado y enlazan sus sitios oficiales', () => {
   const section = html.match(/<section\b[^>]*id="clientes"[^>]*>([\s\S]*?)<\/section>/)?.[1];
   assert.ok(section, 'Falta la sección de clientes');
-  const links = [...section.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)];
+  const cards = [...section.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/g)];
   const expected = [
     ['Ferreyros', 'https://www.ferreyros.com.pe/'],
     ['Unimaq', 'https://www.unimaq.com.pe/'],
-    ['SNC-Lavalin', 'https://www.atkinsrealis.com/'],
+    ['SNC-Lavalin', null],
     ['Mota-Engil', 'https://www.mota-engil.pe/'],
     ['Marco', 'https://www.marco.com.pe/'],
     ['SINAR', 'https://sinar.com.pe/'],
     ['FH Ingenieros', 'https://fhingenieros.com.pe/'],
   ];
-  assert.equal(links.length, expected.length);
-  links.forEach(([, attributes, content], index) => {
+  assert.equal(cards.length, expected.length);
+  cards.forEach(([, content], index) => {
     const [name, url] = expected[index];
+    assert.ok(content.includes(`alt="${name}"`), name);
+    if (!url) {
+      assert.doesNotMatch(content, /<a\b|\bhref=|\btarget=|↗/);
+      return;
+    }
+    const attributes = content.match(/<a\b([^>]*)>/)?.[1];
+    assert.ok(attributes, name);
     assert.ok(attributes.includes(`href="${url}"`), name);
     assert.match(attributes, /target="_blank"/);
     assert.match(attributes, /rel="noopener noreferrer"/);
-    assert.ok(content.includes(`alt="${name}"`), name);
   });
   assert.ok(section.includes('Entre otros.'));
   assert.ok(html.includes('href="#clientes"'));

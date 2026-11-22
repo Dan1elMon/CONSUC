@@ -1,7 +1,7 @@
 [
   { "name": "Ferreyros", "logo": "Ferreyros.png", "url": "https://www.ferreyros.com.pe/" },
   { "name": "Unimaq", "logo": "unimaq.png", "url": "https://www.unimaq.com.pe/" },
-  { "name": "SNC-Lavalin", "logo": "SNC-Lavalin-Logo.png", "url": "#" },
+  { "name": "SNC-Lavalin", "logo": "SNC-Lavalin-Logo.png", "url": null },
   { "name": "Mota-Engil", "logo": "motaengil.png", "url": "https://www.mota-engil.pe/" },
   { "name": "Marco", "logo": "logo-marco-COLOR.png", "url": "https://www.marco.com.pe/" },
   { "name": "SINAR", "logo": "sinarCalidadyprecision.png", "url": "https://sinar.com.pe/" },

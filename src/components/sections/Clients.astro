@@ -13,12 +13,15 @@ const logos = import.meta.glob<ImageMetadata>('../../../imgs/Clientes/*.png', {
   <div class="container">
     <SectionTitle number="05" eyebrow="NUESTROS CLIENTES" title="CONFIANZA QUE NOS IMPULSA." />
     <ul class="clients-list" role="list">
-      {clients.map(client => <li>
-        <a href={client.url} target="_blank" rel="noopener noreferrer" aria-label={`${client.name}: visitar sitio web (abre en otra pestaña)`}>
+      {clients.map(client => {
+        const Tag = client.url ? 'a' : 'div';
+        return <li>
+        <Tag class="client-card" href={client.url ?? undefined} target={client.url ? '_blank' : undefined} rel={client.url ? 'noopener noreferrer' : undefined} aria-label={client.url ? `${client.name}: visitar sitio web (abre en otra pestaña)` : undefined}>
           <Image src={logos[`../../../imgs/Clientes/${client.logo}`]} alt={client.name} width={280} format="webp" loading="lazy" />
-          <span>{client.name} <span aria-hidden="true">↗</span></span>
-        </a>
-      </li>)}
+          <span>{client.name} {client.url && <span aria-hidden="true">↗</span>}</span>
+        </Tag>
+      </li>;
+      })}
     </ul>
     <p class="clients-more">Entre otros.</p>
   </div>
@@ -42,7 +45,7 @@ const logos = import.meta.glob<ImageMetadata>('../../../imgs/Clientes/*.png', {
     flex: 0 0 calc((100% - 60px) / 4);
     min-width: 0;
   }
-  .clients-list a {
+  .client-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,7 +58,7 @@ const logos = import.meta.glob<ImageMetadata>('../../../imgs/Clientes/*.png', {
     border-radius: 10px;
     transition: border-color .2s, box-shadow .2s;
   }
-  .clients-list a:hover {
+  a.client-card:hover {
     border-color: var(--color-accent-orange);
     box-shadow: 0 8px 24px #1c2a390d;
   }
@@ -64,12 +67,12 @@ const logos = import.meta.glob<ImageMetadata>('../../../imgs/Clientes/*.png', {
     height: 85px;
     object-fit: contain;
   }
-  .clients-list a > span {
+  .client-card > span {
     color: var(--text-heading);
     font-size: .875rem;
     font-weight: 600;
   }
-  .clients-list a > span > span {
+  .client-card > span > span {
     margin-left: 5px;
     color: #a74600;
   }
@@ -80,12 +83,12 @@ const logos = import.meta.glob<ImageMetadata>('../../../imgs/Clientes/*.png', {
   }
   @media (max-width: 800px) {
     .clients-list li { flex-basis: calc((100% - 40px) / 3); }
-    .clients-list a { padding: 25px 18px 18px; }
+    .client-card { padding: 25px 18px 18px; }
   }
   @media (max-width: 600px) {
     .clients-list { gap: 14px; margin-top: 32px; }
     .clients-list li { flex-basis: calc((100% - 14px) / 2); }
-    .clients-list a { padding: 22px 14px 18px; gap: 18px; }
+    .client-card { padding: 22px 14px 18px; gap: 18px; }
     .clients-list img { height: 65px; }
   }
 </style>
