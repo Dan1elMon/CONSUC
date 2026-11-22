@@ -222,7 +222,7 @@ section[id]{
 .main-navigation{
   display:flex;
   align-items:center;
-  gap:28px
+  gap:20px
 }
 .main-navigation>a:not(.button){
   font-size:.82rem;
@@ -863,7 +863,7 @@ section[id]{
 }
 @media(max-width:1199px){
   .main-navigation{
-    gap:19px
+    gap:14px
   }
   .main-navigation>a:not(.button){
     font-size:.76rem

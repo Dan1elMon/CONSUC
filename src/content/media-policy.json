@@ -1,7 +1,9 @@
 {
   "confirmedOn": "2026-11-19",
   "authorizedLogoDirectory": "imgs/Logos",
-  "clientLogosAuthorized": false,
+  "clientLogosAuthorized": true,
+  "authorizedClientLogoDirectory": "imgs/Clientes",
+  "clientLogoAuthorization": { "source": "user", "confirmedOn": "2026-11-22" },
   "photographyMode": "reference_until_client_originals",
   "referenceLabel": "Imagen referencial",
   "referenceRequirements": [

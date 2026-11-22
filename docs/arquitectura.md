@@ -162,3 +162,8 @@ Se puede comenzar la estructura y el diseño con los contactos confirmados y el 
 Astro admite rutas de servidor mediante adaptador; incorporarlas requiere revisar alojamiento y costos. No asumir que un portal completo se obtiene automáticamente de la landing ni que todas las funciones futuras caben en hosting estático gratuito.
 
 `docs/datos-y-flujos.md` y `src/contracts/inquiry.schema.json` quedan como referencias futuras, no requisitos de esta entrega.
+
+
+## Clientes · 22 de noviembre de 2026
+
+El usuario solicitó mostrar los logos de imgs/Clientes en este orden: Ferreyros, Unimaq, SNC-Lavalin, Mota-Engil, Marco, SINAR y FH Ingenieros, seguidos de «Entre otros». Esta solicitud sustituye la exclusión anterior de clientes. Los enlaces oficiales se registran en src/content/clients.json; SNC-Lavalin enlaza a AtkinsRéalis, su nombre actual. La sección aparece antes de Contacto, con acceso desde el menú. No se crean fichas de proyectos ni se añaden acreditaciones. Avisar al usuario antes de hacer commits o push.

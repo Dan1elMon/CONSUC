@@ -8,12 +8,13 @@ import Services from '../components/sections/Services.astro';
 import Commitment from '../components/sections/Commitment.astro';
 import Gallery from '../components/sections/Gallery.astro';
 import Contact from '../components/sections/Contact.astro';
+import Clients from '../components/sections/Clients.astro';
 import Icon from '../components/ui/Icon.astro';
 import { whatsappUrl } from '../lib/whatsapp.mjs';
 ---
 <BaseLayout>
   <Header />
-  <main id="contenido"><Hero /><About /><Services /><Commitment /><Gallery /><Contact /></main>
+  <main id="contenido"><Hero /><About /><Services /><Commitment /><Gallery /><Clients /><Contact /></main>
   <Footer />
   <a class="floating-whatsapp" href={whatsappUrl()} target="_blank" rel="noopener noreferrer" aria-label="Contactar a CONSUC por WhatsApp (abre en otra pestaña)"><Icon name="chat" size={30} /><span>WhatsApp</span></a>
 </BaseLayout>

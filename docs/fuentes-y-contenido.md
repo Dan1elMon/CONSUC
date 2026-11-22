@@ -66,3 +66,8 @@ Los seis archivos de marca están ahora en `imgs/Logos`: `CONSUC PNG.png`, `LOGO
 - Única carpeta autorizada de logos: `imgs/Logos`. Esto no autoriza los logos de clientes vistos en el brochure ni acredita una relación comercial publicable.
 
 Los contactos confirmados y la política de medios están en `src/content/company.json` y `src/content/media-policy.json`. La publicación de nombres de clientes o documentos AWS/SGS sigue pendiente y puede omitirse sin bloquear el desarrollo.
+
+
+## Clientes · 22 de noviembre de 2026
+
+El usuario solicitó mostrar los logos de imgs/Clientes en este orden: Ferreyros, Unimaq, SNC-Lavalin, Mota-Engil, Marco, SINAR y FH Ingenieros, seguidos de «Entre otros». Esta solicitud sustituye la exclusión anterior de clientes. Los enlaces oficiales se registran en src/content/clients.json; SNC-Lavalin enlaza a AtkinsRéalis, su nombre actual. La sección aparece antes de Contacto, con acceso desde el menú. No se crean fichas de proyectos ni se añaden acreditaciones. Avisar al usuario antes de hacer commits o push.

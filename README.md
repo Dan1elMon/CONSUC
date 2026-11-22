@@ -4,9 +4,9 @@ Landing corporativa de ingeniería, construcción, mantenimiento y transporte pa
 
 ## Estado
 
-Primera versión funcional para revisión local. Incluye Inicio, Nosotros, seis servicios con alcance desplegable, compromisos de seguridad/calidad/ambiente, galería referencial y contacto por WhatsApp, teléfono y correo. Menú móvil accesible y fuentes servidas localmente.
+Primera versión funcional para revisión local. Incluye Inicio, Nosotros, seis servicios con alcance desplegable, compromisos de seguridad/calidad/ambiente, galería, siete clientes con enlaces oficiales y contacto por WhatsApp, teléfono y correo. Menú móvil accesible y fuentes servidas localmente.
 
-WhatsApp confirmado: +51 989 522 797. El brochure no está en la web. Solo se usan logos de `imgs/Logos`; no se publican logos de clientes ni acreditaciones no verificadas. Las fotos de referencia se muestran sin etiquetas por solicitud del usuario; su procedencia se registra en [Recursos visuales](docs/recursos-visuales.md).
+WhatsApp confirmado: +51 989 522 797. El brochure no está en la web. Se usan logos corporativos de `imgs/Logos` y siete logos de clientes de `imgs/Clientes`, autorizados por el usuario el 22 de noviembre de 2026. No se publican acreditaciones no verificadas. Las fotos de referencia se muestran sin etiquetas por solicitud del usuario; su procedencia se registra en [Recursos visuales](docs/recursos-visuales.md).
 
 El código está en [Dan1elMon/CONSUC](https://github.com/Dan1elMon/CONSUC). Se incluye un workflow para compartir el avance mediante GitHub Pages; la primera publicación requiere activarlo como se indica abajo. El panel, la base de datos y los formularios quedan fuera del alcance.
 
@@ -30,7 +30,7 @@ pnpm test
 pnpm preview
 ```
 
-`check` valida tipos de Astro y el inventario. `test` requiere un build previo y comprueba WhatsApp, los seis mensajes por servicio, las anclas, los archivos de imagen y la exclusión de brochure y clientes. La salida estática para alojamiento es `dist/`.
+`check` valida tipos de Astro y el inventario. `test` requiere un build previo y comprueba WhatsApp, los seis mensajes por servicio, las anclas, los archivos de imagen y la exclusión del brochure y el orden y enlaces de los clientes. La salida estática para alojamiento es `dist/`.
 
 ## Contenido y recursos
 
@@ -119,3 +119,8 @@ La propuesta lleva `noindex,nofollow` por defecto. Antes del lanzamiento definit
 - [Recursos visuales](docs/recursos-visuales.md).
 - [Datos y flujos futuros](docs/datos-y-flujos.md), fuera de esta landing.
 - [Guía de estilo original](guia_estilo_y_disenio.md).
+
+
+## Clientes · 22 de noviembre de 2026
+
+El usuario solicitó mostrar los logos de imgs/Clientes en este orden: Ferreyros, Unimaq, SNC-Lavalin, Mota-Engil, Marco, SINAR y FH Ingenieros, seguidos de «Entre otros». Esta solicitud sustituye la exclusión anterior de clientes. Los enlaces oficiales se registran en src/content/clients.json; SNC-Lavalin enlaza a AtkinsRéalis, su nombre actual. La sección aparece antes de Contacto, con acceso desde el menú. No se crean fichas de proyectos ni se añaden acreditaciones. Avisar al usuario antes de hacer commits o push.

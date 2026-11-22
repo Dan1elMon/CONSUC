@@ -30,8 +30,8 @@ test('las anclas internas apuntan a elementos existentes y los IDs son únicos',
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
 });
 
-test('la propuesta no publica brochure, formularios ni clientes sin autorización', async () => {
-  assert.doesNotMatch(html, /<form\b|href="[^"]*\.pdf|<iframe\b|id="clientes"/i);
+test('la propuesta no publica brochure ni formularios', async () => {
+  assert.doesNotMatch(html, /<form\b|href="[^"]*\.pdf|<iframe\b/i);
   assert.doesNotMatch(html, /brochure/i);
   const files = await readdir(new URL('../dist/', import.meta.url), { recursive: true });
   assert.ok(!files.some(file => /\.pdf$/i.test(file)));
@@ -50,6 +50,31 @@ test('imágenes locales disponibles, con texto alternativo y sin etiquetas refer
     assert.match(image, /\bheight="\d+"/);
   }
   assert.doesNotMatch(html, /referencial/i);
+});
+
+test('clientes autorizados aparecen en el orden solicitado y enlazan sus sitios oficiales', () => {
+  const section = html.match(/<section\b[^>]*id="clientes"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(section, 'Falta la sección de clientes');
+  const links = [...section.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)];
+  const expected = [
+    ['Ferreyros', 'https://www.ferreyros.com.pe/'],
+    ['Unimaq', 'https://www.unimaq.com.pe/'],
+    ['SNC-Lavalin', 'https://www.atkinsrealis.com/'],
+    ['Mota-Engil', 'https://www.mota-engil.pe/'],
+    ['Marco', 'https://www.marco.com.pe/'],
+    ['SINAR', 'https://sinar.com.pe/'],
+    ['FH Ingenieros', 'https://fhingenieros.com.pe/'],
+  ];
+  assert.equal(links.length, expected.length);
+  links.forEach(([, attributes, content], index) => {
+    const [name, url] = expected[index];
+    assert.ok(attributes.includes(`href="${url}"`), name);
+    assert.match(attributes, /target="_blank"/);
+    assert.match(attributes, /rel="noopener noreferrer"/);
+    assert.ok(content.includes(`alt="${name}"`), name);
+  });
+  assert.ok(section.includes('Entre otros.'));
+  assert.ok(html.includes('href="#clientes"'));
 });
 
 test('favicon, recursos y regreso desde 404 respetan la ruta base', async () => {

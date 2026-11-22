@@ -64,7 +64,8 @@ assert.equal(company.inquiryRecipient, null, 'El receptor requiere confirmación
 assert.equal(company.brochureEnabled, false, 'El brochure está excluido de la web por instrucción del usuario');
 assert.equal(company.brochurePublicPath, null, 'No debe existir una descarga pública del brochure');
 assert.equal(mediaPolicy.authorizedLogoDirectory, 'imgs/Logos');
-assert.equal(mediaPolicy.clientLogosAuthorized, false);
+assert.equal(mediaPolicy.clientLogosAuthorized, true);
+assert.equal(mediaPolicy.authorizedClientLogoDirectory, 'imgs/Clientes');
 assert.equal(mediaPolicy.photographyMode, 'reference_until_client_originals');
 assert.ok(mediaPolicy.referenceLabel);
 assert.equal(company.publicationStatus, 'draft');
