@@ -31,7 +31,7 @@ for (const s of services) {
   unique(s.subservices.map(item => item.title), `Subservicios de ${s.id}`);
   for (const item of s.subservices) {
     assert.ok(item.title && item.description && item.alt);
-    assert.match(item.image, /^[a-z-]+\.jpg$/);
+    assert.match(item.image, /^[a-z-]+\.(?:jpg|png)$/);
     await readFile(new URL(`src/assets/references/${item.image}`, root));
   }
 }

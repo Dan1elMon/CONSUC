@@ -33,6 +33,12 @@ El 24 de noviembre de 2026 el usuario sustituyó las vistas al pasar el puntero 
 
 El brochure sigue excluido de los archivos públicos y de los enlaces de la landing.
 
+## Vehículos de Transporte · 24 de noviembre de 2026
+
+Por solicitud del usuario, se generaron con la herramienta integrada `image_gen.imagegen` tres imágenes: `src/assets/references/hilux-minera-blanca.png`, `bus-blanco.png` y `custer-blanco.png`. Representan una Toyota Hilux equipada para minería, un bus y un cúster tipo Coaster, todos blancos. No son fotografías de unidades existentes ni prueban año, disponibilidad, homologación o acreditación de una flota. Se usan para ilustrar los servicios solicitados; los originales generados se conservan y Astro optimiza la salida. Los prompts completos están en `docs/prompts-transporte.json`. No se agregan etiquetas referenciales en la interfaz, conforme a la instrucción previa del usuario.
+
+Tras el ajuste posterior solicitado por el usuario, Transporte queda con cuatro tarjetas: Transporte de personal (bus blanco), Transporte de carga (camión), Soporte logístico (Hilux blanca) y Servicio de almacenamiento. Personal y carga se presentan por separado; Soporte logístico menciona vehículos homologados y acreditados. La cifra total del catálogo es de 30 subservicios. Las imágenes generadas se conservan aunque alguna no se utilice en esta versión.
+
 
 ## Clientes · 22 de noviembre de 2026
 

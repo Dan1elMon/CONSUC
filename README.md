@@ -4,7 +4,7 @@ Landing corporativa de ingeniería, construcción, mantenimiento y transporte pa
 
 ## Estado
 
-Primera versión funcional para revisión local. Incluye Inicio, Nosotros, un carrusel de seis categorías y 29 subservicios ilustrados, compromisos de seguridad/calidad/ambiente, galería, siete clientes y contacto por WhatsApp, teléfono y correo. Menú móvil accesible y fuentes servidas localmente.
+Primera versión funcional para revisión local. Incluye Inicio, Nosotros, un carrusel de seis categorías y 30 subservicios ilustrados, compromisos de seguridad/calidad/ambiente, galería, siete clientes y contacto por WhatsApp, teléfono y correo. Menú móvil accesible y fuentes servidas localmente.
 
 WhatsApp confirmado: +51 989 522 797. El brochure no está en la web. Se usan logos corporativos de `imgs/Logos` y siete logos de clientes de `imgs/Clientes`, autorizados por el usuario el 22 de noviembre de 2026. No se publican acreditaciones no verificadas. Las fotos de referencia se muestran sin etiquetas por solicitud del usuario; su procedencia se registra en [Recursos visuales](docs/recursos-visuales.md).
 

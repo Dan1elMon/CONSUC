@@ -281,10 +281,11 @@
     "id": "logistics",
     "slug": "transporte-y-logistica",
     "title": "Transporte",
-    "summary": "Transporte de personal y carga, soporte logístico y almacenamiento para tu proyecto.",
+    "summary": "Transporte de personal y carga, soporte logístico con vehículos homologados y acreditados, y almacenamiento según las necesidades del cliente.",
     "scope": [
-      "Traslado de personal y carga con unidades y conductores homologados.",
-      "Apoyo logístico para coordinar las necesidades de transporte y abastecimiento.",
+      "Traslado de personal con unidades y conductores homologados.",
+      "Traslado de materiales y carga según las necesidades del cliente.",
+      "Apoyo logístico para coordinar las necesidades de transporte y abastecimiento con vehículos homologados y acreditados.",
       "Almacenamiento de materiales y suministros para las necesidades del cliente."
     ],
     "whatsappMessage": "Hola, necesito cotizar transporte de personal, carga o soporte logístico.",
@@ -298,16 +299,22 @@
     "subtitle": "Transporte y logística",
     "subservices": [
       {
-        "title": "Transporte de personal y carga",
-        "description": "Traslado de personal y carga con unidades y conductores homologados.",
+        "title": "Transporte de personal",
+        "description": "Traslado de personal con unidades y conductores homologados.",
+        "image": "bus-blanco.png",
+        "alt": "Bus blanco para el transporte de personal"
+      },
+      {
+        "title": "Transporte de carga",
+        "description": "Traslado de materiales y carga según las necesidades del cliente.",
         "image": "transporte.jpg",
         "alt": "Camión de carga circulando por carretera"
       },
       {
         "title": "Soporte logístico",
-        "description": "Apoyo logístico para coordinar las necesidades de transporte y abastecimiento.",
-        "image": "ingenieria.jpg",
-        "alt": "Planos y herramientas de dibujo técnico"
+        "description": "Apoyo logístico para coordinar las necesidades de transporte y abastecimiento con vehículos homologados y acreditados.",
+        "image": "hilux-minera-blanca.png",
+        "alt": "Camioneta Toyota Hilux blanca equipada para minería"
       },
       {
         "title": "Servicio de almacenamiento",

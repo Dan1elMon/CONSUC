@@ -5,7 +5,7 @@ import services from '../../content/services.json';
 import { whatsappUrl } from '../../lib/whatsapp.mjs';
 import Icon from '../ui/Icon.astro';
 import SectionTitle from '../ui/SectionTitle.astro';
-const images = import.meta.glob<ImageMetadata>('../../assets/references/*.jpg', { eager: true, import: 'default' });
+const images = import.meta.glob<ImageMetadata>('../../assets/references/*.{jpg,png}', { eager: true, import: 'default' });
 ---
 <section class="section services" id="servicios" aria-label="Nuestros servicios">
   <div class="container">

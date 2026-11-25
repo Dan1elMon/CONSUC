@@ -1,0 +1,18 @@
+{
+  "tool": "image_gen.imagegen (built-in)",
+  "transparent_background": false,
+  "images": [
+    {
+      "asset": "src/assets/references/hilux-minera-blanca.png",
+      "prompt": "Use case: photorealistic-natural. Asset: landscape 3:2 image for a Peruvian mining transport services website. Photorealistic commercial vehicle photography, bright clear Andean daylight, natural gravel mining access area with distant dry mountains, no people. Show the ENTIRE vehicle including all wheels with generous margins so a 16:9 card crop preserves it, front three-quarter view, realistic proportions and equipment. White vehicle body is mandatory. No company branding, no promotional text, no certification marks, no watermarks, no invented accreditation stickers. This is an illustrative concept image, not a documentary photograph of a fleet. Subject: one new current-generation Toyota Hilux double-cab 4x4 pickup, white paint, recognizably Toyota Hilux. Equipped for mining with a restrained steel front protection bar, raised orange safety flag on a whip pole, amber beacon light on a rollover protection bar behind the cab, red-and-white reflective safety stripes along the lower doors, robust all-terrain tires. Professional practical mining fitout, realistic wheel size, no extravagant offroad modifications. No model year text."
+    },
+    {
+      "asset": "src/assets/references/bus-blanco.png",
+      "prompt": "Use case: photorealistic-natural. Asset: landscape 3:2 image for a Peruvian mining transport services website. Photorealistic commercial vehicle photography, bright clear Andean daylight, natural gravel mining access area with distant dry mountains, no people. Show the ENTIRE vehicle including all wheels with generous margins so a 16:9 card crop preserves it, front three-quarter view, realistic proportions and equipment. White vehicle body is mandatory. No company branding, no promotional text, no certification marks, no watermarks, no invented accreditation stickers. This is an illustrative concept image, not a documentary photograph of a fleet. Subject: one full-size modern white passenger coach bus for transporting mining personnel, large side windows, sober dark lower trim, amber beacon and discreet reflective safety strips. Single bus only; no pickups, no minibuses. The roof and coach body remain white."
+    },
+    {
+      "asset": "src/assets/references/custer-blanco.png",
+      "prompt": "Use case: photorealistic-natural. Asset: landscape 3:2 image for a Peruvian mining transport services website. Photorealistic commercial vehicle photography, bright clear Andean daylight, natural gravel mining access area with distant dry mountains, no people. Show the ENTIRE vehicle including all wheels with generous margins so a 16:9 card crop preserves it, front three-quarter view, realistic proportions and equipment. White vehicle body is mandatory. No company branding, no promotional text, no certification marks, no watermarks, no invented accreditation stickers. This is an illustrative concept image, not a documentary photograph of a fleet. Subject: one compact white Toyota Coaster style personnel minibus (a cúster), short and tall minibus proportions, about 25 seats, high passenger windows and practical side entry door, simple contemporary rounded front, amber beacon and subtle reflective safety strips. Clearly a small Coaster minibus, NOT a full-size coach bus and NOT a van. No model year text."
+    }
+  ]
+}

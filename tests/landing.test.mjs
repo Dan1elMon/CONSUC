@@ -18,7 +18,7 @@ test('WhatsApp usa el contacto confirmado y conserva acentos y caracteres del me
 
 test('el carrusel conserva seis módulos ordenados, subservicios ilustrados y consultas específicas', () => {
   assert.deepEqual(services.map(service => service.title), ['Ingeniería', 'Mantenimiento', 'Trabajos eléctricos', 'Servicios misceláneos', 'Construcción y reparación', 'Transporte']);
-  assert.deepEqual(services.map(service => service.subservices.length), [2, 2, 7, 11, 4, 3]);
+  assert.deepEqual(services.map(service => service.subservices.length), [2, 2, 7, 11, 4, 4]);
   assert.ok(html.includes('aria-roledescription="carrusel"'));
   assert.ok(html.includes('aria-label="Servicio anterior"'));
   assert.ok(html.includes('aria-label="Servicio siguiente"'));
@@ -35,6 +35,16 @@ test('el carrusel conserva seis módulos ordenados, subservicios ilustrados y co
       assert.ok(article.includes(`alt="${subservice.alt}"`), subservice.title);
     }
   }
+});
+
+test('Transporte separa personal y carga y muestra camionetas en Soporte logístico', () => {
+  const transport = services.find(service => service.id === 'logistics');
+  assert.ok(transport);
+  assert.deepEqual(transport.subservices.map(item => item.title), ['Transporte de personal', 'Transporte de carga', 'Soporte logístico', 'Servicio de almacenamiento']);
+  assert.equal(transport.subservices[0].image, 'bus-blanco.png');
+  assert.equal(transport.subservices[1].description, 'Traslado de materiales y carga según las necesidades del cliente.');
+  assert.equal(transport.subservices[2].image, 'hilux-minera-blanca.png');
+  assert.equal(transport.subservices[2].description, 'Apoyo logístico para coordinar las necesidades de transporte y abastecimiento con vehículos homologados y acreditados.');
 });
 
 test('las anclas internas apuntan a elementos existentes y los IDs son únicos', () => {

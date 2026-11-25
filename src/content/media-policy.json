@@ -3,9 +3,19 @@
   "authorizedLogoDirectory": "imgs/Logos",
   "clientLogosAuthorized": true,
   "authorizedClientLogoDirectory": "imgs/Clientes",
-  "clientLogoAuthorization": { "source": "user", "confirmedOn": "2026-11-22" },
+  "clientLogoAuthorization": {
+    "source": "user",
+    "confirmedOn": "2026-11-22"
+  },
   "authorizedAboutPhotoDirectory": "imgs/QuienesSomos",
-  "aboutPhotoAuthorization": { "source": "user", "confirmedOn": "2026-11-24", "files": ["Base.png", "Oficinas.png"] },
+  "aboutPhotoAuthorization": {
+    "source": "user",
+    "confirmedOn": "2026-11-24",
+    "files": [
+      "Base.png",
+      "Oficinas.png"
+    ]
+  },
   "photographyMode": "reference_until_client_originals",
   "referenceLabel": "Imagen referencial",
   "referenceRequirements": [
@@ -13,5 +23,16 @@
     "No atribuir las escenas a trabajos, personal o instalaciones de CONSUC.",
     "Registrar procedencia y condiciones de uso de cada imagen utilizada.",
     "Preparar el reemplazo por fotografías originales aprobadas del cliente."
-  ]
+  ],
+  "generatedTransportImages": {
+    "source": "user_request",
+    "confirmedOn": "2026-11-24",
+    "tool": "image_gen.imagegen",
+    "files": [
+      "hilux-minera-blanca.png",
+      "bus-blanco.png",
+      "custer-blanco.png"
+    ],
+    "usage": "Ilustraciones generadas para las tarjetas de Transporte; no documentan una flota real ni acreditan homologación."
+  }
 }
