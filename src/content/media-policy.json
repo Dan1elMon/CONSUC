@@ -4,6 +4,8 @@
   "clientLogosAuthorized": true,
   "authorizedClientLogoDirectory": "imgs/Clientes",
   "clientLogoAuthorization": { "source": "user", "confirmedOn": "2026-11-22" },
+  "authorizedAboutPhotoDirectory": "imgs/QuienesSomos",
+  "aboutPhotoAuthorization": { "source": "user", "confirmedOn": "2026-11-24", "files": ["Base.png", "Oficinas.png"] },
   "photographyMode": "reference_until_client_originals",
   "referenceLabel": "Imagen referencial",
   "referenceRequirements": [

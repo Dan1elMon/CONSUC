@@ -1,15 +1,32 @@
 ---
 import { Image } from 'astro:assets';
-import welding from '../../assets/references/soldadura.jpg';
+import base from '../../../imgs/QuienesSomos/Base.png';
+import offices from '../../../imgs/QuienesSomos/Oficinas.png';
 import SectionTitle from '../ui/SectionTitle.astro';
+const photos = [
+  { image: base, title: 'Base', alt: 'Fachada de la base de CONSUC con su identidad corporativa' },
+  { image: offices, title: 'Oficinas', alt: 'Vista interior de las oficinas y áreas de trabajo de CONSUC' },
+];
 ---
 <section class="section about" id="nosotros" aria-label="Nosotros">
   <div class="container about-grid">
     <div class="about-visual">
-      <figure class="about-photo">
-        <Image src={welding} alt="Trabajo de soldadura industrial" widths={[480, 800, 1100]} sizes="(max-width: 800px) 100vw, 45vw" format="webp" loading="lazy" />
-        <figcaption class="photo-tag">METALMECÁNICA</figcaption>
-      </figure>
+      <div class="about-gallery" role="region" aria-roledescription="carrusel" aria-label="Base y oficinas de CONSUC">
+        <div class="about-gallery-track" id="about-gallery-track" tabindex="0" aria-label="Imágenes de Nosotros: desliza o usa las flechas izquierda y derecha">
+          {photos.map((photo, index) => <figure class="about-photo" role="group" aria-roledescription="diapositiva" aria-label={`${index + 1} de ${photos.length}: ${photo.title}`}>
+            <Image src={photo.image} alt={photo.alt} widths={[480, 800, 1100]} sizes="(max-width: 800px) 100vw, 45vw" format="webp" loading="lazy" />
+            <figcaption class="about-image-caption">{photo.title}</figcaption>
+          </figure>)}
+        </div>
+        <div class="about-gallery-controls" hidden>
+          <button class="about-gallery-arrow" type="button" data-about-previous aria-label="Imagen anterior de Nosotros" aria-controls="about-gallery-track" disabled><span aria-hidden="true">←</span></button>
+          <div class="about-gallery-choices" role="group" aria-label="Elegir imagen de Nosotros">
+            {photos.map((photo, index) => <button type="button" data-about-index={index} aria-pressed={index === 0 ? 'true' : 'false'} aria-controls="about-gallery-track">{photo.title}</button>)}
+          </div>
+          <button class="about-gallery-arrow" type="button" data-about-next aria-label="Imagen siguiente de Nosotros" aria-controls="about-gallery-track"><span aria-hidden="true">→</span></button>
+          <span class="about-gallery-status" aria-live="polite" aria-atomic="true">1 de 2: Base</span>
+        </div>
+      </div>
       <div class="about-note"><span>DESDE CHALLHUAHUACHO</span><strong>Ingenio peruano.<br />Compromiso en cada trabajo.</strong></div>
     </div>
     <div class="about-copy">
@@ -23,3 +40,78 @@ import SectionTitle from '../ui/SectionTitle.astro';
     </div>
   </div>
 </section>
+
+<script>
+  const gallery = document.querySelector<HTMLElement>('.about-gallery');
+  if (gallery) {
+    const track = gallery.querySelector<HTMLElement>('.about-gallery-track')!;
+    const slides = Array.from(track.querySelectorAll<HTMLElement>('.about-photo'));
+    const choices = Array.from(gallery.querySelectorAll<HTMLButtonElement>('[data-about-index]'));
+    const previous = gallery.querySelector<HTMLButtonElement>('[data-about-previous]')!;
+    const next = gallery.querySelector<HTMLButtonElement>('[data-about-next]')!;
+    const status = gallery.querySelector<HTMLElement>('.about-gallery-status')!;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let current = 0;
+    let width = track.clientWidth;
+    let frame = 0;
+    const select = (index: number) => {
+      current = index;
+      choices.forEach((choice, i) => choice.setAttribute('aria-pressed', String(i === index)));
+      slides.forEach((slide, i) => slide.setAttribute('aria-hidden', String(i !== index)));
+      previous.disabled = index === 0;
+      next.disabled = index === slides.length - 1;
+      status.textContent = `${index + 1} de ${slides.length}: ${choices[index].textContent}`;
+    };
+    const go = (index: number) => {
+      const target = Math.max(0, Math.min(slides.length - 1, index));
+      track.scrollTo({ left: target * track.clientWidth, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+    };
+    choices.forEach((choice, index) => choice.addEventListener('click', () => go(index)));
+    previous.addEventListener('click', () => go(current - 1));
+    next.addEventListener('click', () => go(current + 1));
+    track.addEventListener('keydown', event => {
+      if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) {
+        event.preventDefault();
+        go(event.key === 'Home' ? 0 : event.key === 'End' ? slides.length - 1 : current + (event.key === 'ArrowRight' ? 1 : -1));
+      }
+    });
+    track.addEventListener('scroll', () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => select(Math.max(0, Math.min(slides.length - 1, Math.round(track.scrollLeft / track.clientWidth)))));
+    }, { passive: true });
+    new ResizeObserver(() => {
+      if (width !== track.clientWidth) {
+        width = track.clientWidth;
+        track.scrollTo({ left: current * width, behavior: 'instant' });
+      }
+    }).observe(track);
+    gallery.querySelector<HTMLElement>('.about-gallery-controls')!.hidden = false;
+    select(0);
+  }
+</script>
+
+<style>
+  .about-visual { padding: 0; min-width: 0; }
+  .about-gallery { min-width: 0; }
+  .about-gallery-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; border-radius: 10px; }
+  .about-gallery-track::-webkit-scrollbar { display: none; }
+  .about-gallery-track:focus-visible { outline: 3px solid #a74600; outline-offset: 4px; }
+  .about-gallery .about-photo { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; background: #1c2a39; }
+  .about-gallery .about-photo > img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; object-position: center; }
+  .about-image-caption { padding: 12px 18px; color: white; font-size: .9375rem; font-weight: 650; border-left: 4px solid #f27d16; }
+  .about-gallery-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; }
+  .about-gallery-controls[hidden] { display: none; }
+  .about-gallery-arrow { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border: 1px solid #cbd5df; border-radius: 50%; background: white; color: #1c2a39; font-size: 1.4rem; cursor: pointer; }
+  .about-gallery-arrow:hover:enabled { background: #f27d16; border-color: #f27d16; }
+  .about-gallery-arrow:disabled { opacity: .35; cursor: default; }
+  .about-gallery-choices { display: flex; gap: 8px; }
+  .about-gallery-choices button { padding: 10px 14px; min-height: 44px; border: 1px solid #dce3e9; border-radius: 6px; background: white; color: #1c2a39; font-size: .875rem; font-weight: 600; cursor: pointer; }
+  .about-gallery-choices button[aria-pressed=true] { background: #1c2a39; color: white; border-color: #1c2a39; }
+  .about-gallery-status { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .about-note { position: static; width: 100%; margin-top: 22px; }
+  @media (max-width: 600px) {
+    .about-gallery-controls { gap: 8px; }
+    .about-gallery-choices { gap: 6px; }
+    .about-gallery-choices button { padding-inline: 10px; }
+  }
+</style>

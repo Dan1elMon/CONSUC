@@ -4,6 +4,8 @@ Los logos corporativos se importan de `imgs/Logos`. La variante utilizada es `LO
 
 Las fotografías descargadas se conservan en `src/assets/references/` y Astro genera versiones WebP optimizadas. Son referencias visuales y no representan proyectos, instalaciones ni personal de CONSUC. Por solicitud del usuario del 20 de noviembre de 2026, se retiraron de la web las etiquetas y los textos «imagen referencial», incluidos los textos alternativos. Se conserva aquí el registro de procedencia.
 
+La sección Nosotros utiliza `imgs/QuienesSomos/Base.png` y `Oficinas.png`, proporcionadas y solicitadas por el usuario el 24 de noviembre de 2026. Sustituyen la imagen de soldadura de esa sección y se presentan en un carrusel manual, en el orden Base y Oficinas. Los originales se conservan sin modificación; Astro genera versiones WebP. Las imágenes se muestran completas, con proporción 4:3 y sin recorte. El carrusel permite flechas, selección directa, teclado y desplazamiento táctil, sin reproducción automática. Misión, visión y texto empresarial permanecen disponibles.
+
 | Archivo | Autor y fuente | Condiciones |
 | --- | --- | --- |
 | `mineria.jpg` | Volker Braun, [Pexels](https://www.pexels.com/photo/aerial-view-of-industrial-open-pit-mining-operation-33122148/) | [Licencia Pexels](https://www.pexels.com/license/), descarga gratuita. |

@@ -12,6 +12,8 @@ El código está en [Dan1elMon/CONSUC](https://github.com/Dan1elMon/CONSUC). Se 
 
 ## Desarrollo local
 
+Nosotros incluye un carrusel manual con las imágenes Base y Oficinas de `imgs/QuienesSomos`, con flechas, selección directa, teclado y desplazamiento en móvil.
+
 El carrusel de servicios se organiza en Ingeniería, Mantenimiento, Trabajos eléctricos, Servicios misceláneos, Construcción y reparación, y Transporte. Cada módulo muestra fotografías y descripciones de sus subservicios. Navegación por categorías, anterior/siguiente, flechas del teclado sobre el carrusel o deslizamiento en móvil; sin reproducción automática. Los módulos inactivos quedan fuera del recorrido de teclado y la altura se adapta al contenido. Sin JavaScript, los módulos siguen disponibles mediante desplazamiento horizontal.
 
 Requisitos: Node.js 22.12 o posterior y pnpm 11.25.0. Las dependencias se fijan mediante `pnpm-lock.yaml`.

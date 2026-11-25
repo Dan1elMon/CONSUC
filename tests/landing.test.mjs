@@ -44,6 +44,18 @@ test('las anclas internas apuntan a elementos existentes y los IDs son únicos',
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
 });
 
+test('Nosotros muestra Base y Oficinas en un carrusel con controles independientes', () => {
+  const section = html.match(/<section\b[^>]*id="nosotros"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(section);
+  assert.ok(section.includes('aria-label="Base y oficinas de CONSUC"'));
+  assert.equal([...section.matchAll(/<img\b/g)].length, 2);
+  const captions = [...section.matchAll(/<figcaption\b[^>]*>([^<]+)<\/figcaption>/g)].map(match => match[1]);
+  assert.deepEqual(captions, ['Base', 'Oficinas']);
+  assert.ok(section.includes('aria-label="Imagen anterior de Nosotros"'));
+  assert.ok(section.includes('aria-label="Imagen siguiente de Nosotros"'));
+  assert.ok(section.includes('NUESTRA MISIÓN') && section.includes('NUESTRA VISIÓN'));
+});
+
 test('la propuesta no publica brochure ni formularios', async () => {
   assert.doesNotMatch(html, /<form\b|href="[^"]*\.pdf|<iframe\b/i);
   assert.doesNotMatch(html, /brochure/i);
