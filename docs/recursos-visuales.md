@@ -13,12 +13,21 @@ Las fotografías descargadas se conservan en `src/assets/references/` y Astro ge
 | `electricidad.jpg` | Toolmash Expo, [Unsplash](https://unsplash.com/photos/electrician-testing-electrical-panel-with-multimeter-PkHf7BUWbtk) | [Licencia Unsplash](https://unsplash.com/license), imagen gratuita. |
 | `almacen.jpg` | Maor Attias, [Pexels](https://www.pexels.com/photo/boxes-on-shelves-inside-a-warehouse-5156696/) | [Licencia Pexels](https://www.pexels.com/license), descarga gratuita. |
 | `transporte.jpg` | Boris Hamer, [Pexels](https://www.pexels.com/photo/a-truck-on-an-expressway-15595843/) | [Licencia Pexels](https://www.pexels.com/license), descarga gratuita. |
+| `topografia.jpg` | Khoiru Ummah Kendari 24, [Pexels](https://www.pexels.com/photo/high-precision-construction-surveying-equipment-outdoors-36930873/) | Licencia Pexels, descarga gratuita. |
+| `drywall.jpg` | Antoni Shkraba, [Pexels](https://www.pexels.com/photo/a-man-fixing-the-wall-4981812/) | Licencia Pexels, descarga gratuita. |
+| `baldosas.jpg` | Sergei Starostin, [Pexels](https://www.pexels.com/photo/construction-worker-laying-tile-in-renovation-project-29181494/) | Licencia Pexels, descarga gratuita. |
+| `parquet.jpg` | Ivan Babydov, [Pexels](https://www.pexels.com/photo/wooden-floor-tiles-7789867/) | Licencia Pexels, descarga gratuita. |
+| `pintura.jpg` | Miguel Cuenca, [Pexels](https://www.pexels.com/photo/man-painting-building-wall-21327832/) | Licencia Pexels, descarga gratuita. |
+| `excavaciones.jpg` | Robert So, [Pexels](https://www.pexels.com/photo/excavator-at-construction-site-20296265/) | Licencia Pexels, descarga gratuita. |
+| `senalizacion.jpg` | Connor Scott McManus, [Pexels](https://www.pexels.com/photo/construction-site-warning-with-traffic-cones-34806519/) | Licencia Pexels, descarga gratuita. |
+| `cableado.jpg` | Jonathan Cooper, [Pexels](https://www.pexels.com/photo/close-up-of-wires-in-machine-10290624/) | Licencia Pexels, descarga gratuita. |
+| `nave-industrial.jpg` | Wenxin Dong, [Pexels](https://www.pexels.com/photo/interior-of-an-empty-warehouse-16924265/) | Licencia Pexels, descarga gratuita. |
 
 Fuentes tipográficas: paquetes `@fontsource-variable/inter` y `@fontsource-variable/montserrat`, servidos localmente, con sus licencias incluidas en los paquetes. No se hacen solicitudes a Google Fonts al visitar la página.
 
 Para reemplazar las referencias, añadir los originales aprobados y actualizar los imports de Hero, About, Gallery y Services y sus textos alternativos. No convertir la galería en casos de éxito sin información verificable.
 
-El 24 de noviembre de 2026 se añadieron vistas de los seis servicios con foto y descripción breve. Se abren al pasar el puntero sobre la tarjeta o al activar el control con clic, toque, Enter o Espacio; Escape cierra la vista. El tamaño del bloque permanece fijo y los enlaces de consulta y el alcance siguen disponibles. Las fotografías se sirven localmente y no muestran etiquetas referenciales, conforme a la solicitud previa del usuario.
+El 24 de noviembre de 2026 el usuario sustituyó las vistas al pasar el puntero por un carrusel de seis módulos. Sus 29 subservicios tienen imagen, título y descripción siempre visibles dentro de su módulo. La navegación permite elegir categoría, usar anterior/siguiente, flechas del teclado o deslizar en móvil; no cambia automáticamente. Las fotografías se sirven localmente y no muestran etiquetas referenciales, conforme a la solicitud previa del usuario. Algunas fotos ilustran el ámbito general de actividades relacionadas y se reutilizan; no documentan la ejecución del subservicio por CONSUC.
 
 El brochure sigue excluido de los archivos públicos y de los enlaces de la landing.
 

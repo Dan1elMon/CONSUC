@@ -2,82 +2,319 @@
   {
     "id": "engineering",
     "slug": "ingenieria-y-diseno",
-    "title": "Ingeniería y diseño",
-    "summary": "Ingeniería de detalle, modelado BIM y 3D y levantamientos topográficos.",
-    "scope": ["Ingeniería de detalle y modelado 3D bajo el sistema BIM.", "Aplicaciones en metalmecánica, piping, obras civiles y eléctricas.", "Levantamiento topográfico."],
+    "title": "Ingeniería",
+    "summary": "Ingeniería de detalle, modelado BIM y levantamientos para proyectos de metalmecánica, misceláneos, piping, obras civiles y eléctricas.",
+    "scope": [
+      "Diseño y modelado 3D bajo el sistema BIM para definir los detalles técnicos de cada proyecto.",
+      "Medición y levantamiento del terreno para la planificación y el desarrollo de obras."
+    ],
     "whatsappMessage": "Hola, quisiera cotizar un servicio de ingeniería y diseño para mi proyecto.",
     "order": 1,
-    "sourcePages": [3],
+    "sourcePages": [
+      3
+    ],
     "publicationStatus": "draft",
     "media": [],
-    "projectIds": []
+    "projectIds": [],
+    "subtitle": "Ingeniería y diseño",
+    "subservices": [
+      {
+        "title": "Ingeniería de detalle y modelado BIM",
+        "description": "Diseño y modelado 3D bajo el sistema BIM para definir los detalles técnicos de cada proyecto.",
+        "image": "ingenieria.jpg",
+        "alt": "Planos y herramientas de dibujo técnico"
+      },
+      {
+        "title": "Levantamiento topográfico",
+        "description": "Medición y levantamiento del terreno para la planificación y el desarrollo de obras.",
+        "image": "topografia.jpg",
+        "alt": "Equipo de medición topográfica en campo"
+      }
+    ]
   },
   {
     "id": "fabrication",
     "slug": "fabricacion-montaje-y-mantenimiento",
-    "title": "Fabricación, montaje y mantenimiento",
-    "summary": "Estructuras metálicas y equipos mecánicos para operaciones industriales.",
-    "scope": ["Ingeniería, fabricación y montaje de estructuras metálicas livianas, medianas y pesadas.", "Trabajos en acero al carbono y acero inoxidable.", "Equipos mecánicos para transporte, elevación, almacenamiento y molienda.", "Mantenimiento de acuerdo con el alcance confirmado para cada requerimiento."],
-    "editorialNotes": "Confirmar el desglose de mantenimiento. La referencia AWS requiere revisar norma y alcance antes de publicarla como afirmación técnica.",
+    "title": "Mantenimiento",
+    "summary": "Ingeniería, fabricación y montaje de estructuras metálicas y equipos mecánicos según las necesidades de cada cliente.",
+    "scope": [
+      "Fabricación y montaje de estructuras livianas, medianas y pesadas en acero al carbono o inoxidable, según la norma AWS aplicable.",
+      "Ingeniería, fabricación y montaje de equipos para transporte, elevación, almacenamiento y molienda."
+    ],
     "whatsappMessage": "Hola, necesito cotizar fabricación, montaje o mantenimiento de estructuras metálicas y equipos.",
     "order": 2,
-    "sourcePages": [2, 3],
+    "sourcePages": [
+      2,
+      3
+    ],
     "publicationStatus": "draft",
     "media": [],
-    "projectIds": []
+    "projectIds": [],
+    "subtitle": "Fabricación y montaje",
+    "subservices": [
+      {
+        "title": "Estructuras metálicas",
+        "description": "Fabricación y montaje de estructuras livianas, medianas y pesadas en acero al carbono o inoxidable, según la norma AWS aplicable.",
+        "image": "soldadura.jpg",
+        "alt": "Trabajo de soldadura en una estructura metálica"
+      },
+      {
+        "title": "Equipos mecánicos",
+        "description": "Ingeniería, fabricación y montaje de equipos para transporte, elevación, almacenamiento y molienda.",
+        "image": "cableado.jpg",
+        "alt": "Componentes de un equipo mecánico industrial"
+      }
+    ]
   },
   {
     "id": "electrical",
     "slug": "instalaciones-electricas",
-    "title": "Instalaciones eléctricas",
-    "summary": "Sistemas eléctricos industriales, tableros, iluminación y puesta a tierra.",
-    "scope": ["Pruebas de continuidad de cableado de fuerza e instrumentación.", "Canalización de bandejas y cableado eléctrico industrial.", "Instalación de tableros para fuerza, control y transferencia automática.", "Diseño y mantenimiento de sistemas de puesta a tierra.", "Mantenimiento y reparación de cableados mineros.", "Diseño y montaje de iluminación interior y exterior."],
+    "title": "Trabajos eléctricos",
+    "summary": "Instalación, pruebas y mantenimiento de sistemas eléctricos para operaciones mineras e industriales.",
+    "scope": [
+      "Verificación de continuidad en cableado de fuerza e instrumentación.",
+      "Ejecución de obras y adecuaciones eléctricas según el alcance de cada proyecto.",
+      "Diseño y mantenimiento de sistemas de puesta a tierra y sus componentes.",
+      "Instalación de canalización de bandejas y tendido de cableado eléctrico industrial.",
+      "Instalación de tableros de fuerza, control y transferencia automática.",
+      "Mantenimiento y reparación del cableado utilizado en operaciones mineras.",
+      "Diseño y montaje de iluminación para interiores y exteriores."
+    ],
     "whatsappMessage": "Hola, quisiera cotizar instalaciones o mantenimiento eléctrico para mi proyecto.",
     "order": 3,
-    "sourcePages": [3],
+    "sourcePages": [
+      3
+    ],
     "publicationStatus": "draft",
     "media": [],
-    "projectIds": []
+    "projectIds": [],
+    "subtitle": "Trabajos eléctricos",
+    "subservices": [
+      {
+        "title": "Pruebas de continuidad",
+        "description": "Verificación de continuidad en cableado de fuerza e instrumentación.",
+        "image": "electricidad.jpg",
+        "alt": "Revisión de un tablero eléctrico industrial"
+      },
+      {
+        "title": "Obras eléctricas",
+        "description": "Ejecución de obras y adecuaciones eléctricas según el alcance de cada proyecto.",
+        "image": "cableado.jpg",
+        "alt": "Cableado y componentes de una máquina industrial"
+      },
+      {
+        "title": "Puesta a tierra",
+        "description": "Diseño y mantenimiento de sistemas de puesta a tierra y sus componentes.",
+        "image": "excavaciones.jpg",
+        "alt": "Excavadora trabajando en una obra"
+      },
+      {
+        "title": "Instalaciones eléctricas industriales",
+        "description": "Instalación de canalización de bandejas y tendido de cableado eléctrico industrial.",
+        "image": "cableado.jpg",
+        "alt": "Cableado y componentes de una máquina industrial"
+      },
+      {
+        "title": "Tableros eléctricos",
+        "description": "Instalación de tableros de fuerza, control y transferencia automática.",
+        "image": "electricidad.jpg",
+        "alt": "Revisión de un tablero eléctrico industrial"
+      },
+      {
+        "title": "Cableados mineros",
+        "description": "Mantenimiento y reparación del cableado utilizado en operaciones mineras.",
+        "image": "cableado.jpg",
+        "alt": "Cableado y componentes de una máquina industrial"
+      },
+      {
+        "title": "Sistemas de iluminación",
+        "description": "Diseño y montaje de iluminación para interiores y exteriores.",
+        "image": "nave-industrial.jpg",
+        "alt": "Interior de una instalación industrial con luminarias"
+      }
+    ]
+  },
+  {
+    "id": "operations",
+    "slug": "servicios-de-apoyo-en-operaciones",
+    "title": "Servicios misceláneos",
+    "summary": "Soluciones de apoyo, reparaciones y trabajos complementarios para las necesidades diarias de tu operación.",
+    "scope": [
+      "Atención de requerimientos complementarios según las necesidades y el alcance acordado con el cliente.",
+      "Reparación de equipos y facilidades para atender necesidades puntuales de la operación.",
+      "Construcción de cercos perimétricos, veredas y canales de drenaje.",
+      "Aplicación de pintura y trabajos de acabado en instalaciones.",
+      "Excavaciones menores y preparación de terrenos para trabajos de obra.",
+      "Instalación y mantenimiento de señalización para áreas y vías de trabajo.",
+      "Instalación de techos parabólicos para cubrir espacios e instalaciones.",
+      "Riego de vías para apoyar el control de polvo en las áreas de operación.",
+      "Manejo de almacenes y suministros para apoyar la organización de la operación.",
+      "Apoyo en la organización y entrega de herramientas e insumos desde pañoles.",
+      "Apoyo con vigías en las actividades y zonas que requiera la operación."
+    ],
+    "whatsappMessage": "Hola, quisiera cotizar servicios misceláneos para mi operación.",
+    "order": 4,
+    "sourcePages": [
+      4
+    ],
+    "publicationStatus": "draft",
+    "media": [],
+    "projectIds": [],
+    "subtitle": "Servicios misceláneos",
+    "subservices": [
+      {
+        "title": "Trabajos variados y otros",
+        "description": "Atención de requerimientos complementarios según las necesidades y el alcance acordado con el cliente.",
+        "image": "ingenieria.jpg",
+        "alt": "Planos y herramientas de dibujo técnico"
+      },
+      {
+        "title": "Reparaciones menores",
+        "description": "Reparación de equipos y facilidades para atender necesidades puntuales de la operación.",
+        "image": "soldadura.jpg",
+        "alt": "Trabajo de soldadura en una estructura metálica"
+      },
+      {
+        "title": "Obras civiles menores",
+        "description": "Construcción de cercos perimétricos, veredas y canales de drenaje.",
+        "image": "construccion.jpg",
+        "alt": "Obra civil en ejecución"
+      },
+      {
+        "title": "Pintura y acabados",
+        "description": "Aplicación de pintura y trabajos de acabado en instalaciones.",
+        "image": "pintura.jpg",
+        "alt": "Trabajador aplicando pintura a una fachada"
+      },
+      {
+        "title": "Excavaciones y movimiento de tierras",
+        "description": "Excavaciones menores y preparación de terrenos para trabajos de obra.",
+        "image": "excavaciones.jpg",
+        "alt": "Excavadora trabajando en una obra"
+      },
+      {
+        "title": "Señalización de seguridad",
+        "description": "Instalación y mantenimiento de señalización para áreas y vías de trabajo.",
+        "image": "senalizacion.jpg",
+        "alt": "Conos y señalización de seguridad en una zona de trabajo"
+      },
+      {
+        "title": "Techos parabólicos",
+        "description": "Instalación de techos parabólicos para cubrir espacios e instalaciones.",
+        "image": "nave-industrial.jpg",
+        "alt": "Interior de una instalación industrial con luminarias"
+      },
+      {
+        "title": "Control de polvo",
+        "description": "Riego de vías para apoyar el control de polvo en las áreas de operación.",
+        "image": "mineria.jpg",
+        "alt": "Vista aérea de una operación minera"
+      },
+      {
+        "title": "Almacenes y suministros",
+        "description": "Manejo de almacenes y suministros para apoyar la organización de la operación.",
+        "image": "almacen.jpg",
+        "alt": "Estanterías y suministros en un almacén"
+      },
+      {
+        "title": "Soporte con pañoles",
+        "description": "Apoyo en la organización y entrega de herramientas e insumos desde pañoles.",
+        "image": "almacen.jpg",
+        "alt": "Estanterías y suministros en un almacén"
+      },
+      {
+        "title": "Soporte con vigías",
+        "description": "Apoyo con vigías en las actividades y zonas que requiera la operación.",
+        "image": "senalizacion.jpg",
+        "alt": "Conos y señalización de seguridad en una zona de trabajo"
+      }
+    ]
   },
   {
     "id": "construction",
     "slug": "construccion-y-reparacion",
     "title": "Construcción y reparación",
-    "summary": "Obras civiles menores, módulos de alojamiento, drywall, pisos y acabados.",
-    "scope": ["Obras civiles menores: cercos perimétricos, veredas y canales de drenaje.", "Instalación de módulos de albergue tipo iglú.", "Drywall, baldosas y parquet.", "Pintura y acabados en instalaciones.", "Excavaciones menores y movimiento de tierras.", "Instalación de techos parabólicos."],
+    "summary": "Instalación de módulos y trabajos de acondicionamiento interior, pisos y acabados.",
+    "scope": [
+      "Instalación de módulos de albergue tipo iglú según los requerimientos del proyecto.",
+      "Instalación de divisiones y elementos de drywall para acondicionar ambientes.",
+      "Colocación de baldosas para pisos y superficies interiores.",
+      "Colocación de pisos de parquet para el acabado de ambientes."
+    ],
     "whatsappMessage": "Hola, necesito cotizar trabajos de construcción o reparación.",
-    "order": 4,
-    "sourcePages": [4],
-    "publicationStatus": "draft",
-    "media": [],
-    "projectIds": []
-  },
-  {
-    "id": "operations",
-    "slug": "servicios-de-apoyo-en-operaciones",
-    "title": "Servicios de apoyo en operaciones",
-    "summary": "Señalización, control de polvo, almacenes, suministros, pañoles y vigías.",
-    "scope": ["Instalación y mantenimiento de señalización de seguridad.", "Control de polvo con riego de vías.", "Manejo de almacenes y suministros.", "Soporte con pañoles y vigías.", "Reparaciones menores de equipos y facilidades, según requerimiento."],
-    "editorialNotes": "Categoría adaptada del bloque servicios misceláneos. Las obras civiles se agrupan en construcción y reparación.",
-    "whatsappMessage": "Hola, quisiera cotizar servicios de apoyo en operaciones.",
     "order": 5,
-    "sourcePages": [4],
+    "sourcePages": [
+      4
+    ],
     "publicationStatus": "draft",
     "media": [],
-    "projectIds": []
+    "projectIds": [],
+    "subtitle": "Construcción y reparación",
+    "subservices": [
+      {
+        "title": "Módulos de albergue tipo iglú",
+        "description": "Instalación de módulos de albergue tipo iglú según los requerimientos del proyecto.",
+        "image": "construccion.jpg",
+        "alt": "Obra civil en ejecución"
+      },
+      {
+        "title": "Trabajos de drywall",
+        "description": "Instalación de divisiones y elementos de drywall para acondicionar ambientes.",
+        "image": "drywall.jpg",
+        "alt": "Instalación de placas de drywall en un ambiente interior"
+      },
+      {
+        "title": "Instalación de baldosas",
+        "description": "Colocación de baldosas para pisos y superficies interiores.",
+        "image": "baldosas.jpg",
+        "alt": "Colocación de baldosas en un piso"
+      },
+      {
+        "title": "Instalación de parquet",
+        "description": "Colocación de pisos de parquet para el acabado de ambientes.",
+        "image": "parquet.jpg",
+        "alt": "Detalle de un piso de madera parquet"
+      }
+    ]
   },
   {
     "id": "logistics",
     "slug": "transporte-y-logistica",
-    "title": "Transporte y logística",
-    "summary": "Transporte de personal y carga, soporte logístico y almacenamiento.",
-    "scope": ["Transporte de personal y carga.", "Soporte logístico.", "Servicio de almacenamiento."],
-    "editorialNotes": "Confirmar evidencia y vigencia antes de anunciar unidades y conductores como homologados.",
+    "title": "Transporte",
+    "summary": "Transporte de personal y carga, soporte logístico y almacenamiento para tu proyecto.",
+    "scope": [
+      "Traslado de personal y carga con unidades y conductores homologados.",
+      "Apoyo logístico para coordinar las necesidades de transporte y abastecimiento.",
+      "Almacenamiento de materiales y suministros para las necesidades del cliente."
+    ],
     "whatsappMessage": "Hola, necesito cotizar transporte de personal, carga o soporte logístico.",
     "order": 6,
-    "sourcePages": [4],
+    "sourcePages": [
+      4
+    ],
     "publicationStatus": "draft",
     "media": [],
-    "projectIds": []
+    "projectIds": [],
+    "subtitle": "Transporte y logística",
+    "subservices": [
+      {
+        "title": "Transporte de personal y carga",
+        "description": "Traslado de personal y carga con unidades y conductores homologados.",
+        "image": "transporte.jpg",
+        "alt": "Camión de carga circulando por carretera"
+      },
+      {
+        "title": "Soporte logístico",
+        "description": "Apoyo logístico para coordinar las necesidades de transporte y abastecimiento.",
+        "image": "ingenieria.jpg",
+        "alt": "Planos y herramientas de dibujo técnico"
+      },
+      {
+        "title": "Servicio de almacenamiento",
+        "description": "Almacenamiento de materiales y suministros para las necesidades del cliente.",
+        "image": "almacen.jpg",
+        "alt": "Estanterías y suministros en un almacén"
+      }
+    ]
   }
 ]

@@ -16,17 +16,24 @@ test('WhatsApp usa el contacto confirmado y conserva acentos y caracteres del me
   assert.equal(formatPhone('+51989522797'), '989 522 797');
 });
 
-test('cada servicio tiene una vista con imagen, descripción y consulta específica', () => {
+test('el carrusel conserva seis módulos ordenados, subservicios ilustrados y consultas específicas', () => {
+  assert.deepEqual(services.map(service => service.title), ['Ingeniería', 'Mantenimiento', 'Trabajos eléctricos', 'Servicios misceláneos', 'Construcción y reparación', 'Transporte']);
+  assert.deepEqual(services.map(service => service.subservices.length), [2, 2, 7, 11, 4, 3]);
+  assert.ok(html.includes('aria-roledescription="carrusel"'));
+  assert.ok(html.includes('aria-label="Servicio anterior"'));
+  assert.ok(html.includes('aria-label="Servicio siguiente"'));
+  assert.equal([...html.matchAll(/data-service-index="\d+"/g)].length, 6);
   for (const service of services) {
     assert.ok(html.includes(`id="servicio-${service.slug}"`), service.title);
     assert.ok(html.includes(whatsappUrl(service.whatsappMessage)), `Falta el contacto de ${service.title}`);
     const article = html.split(`id="servicio-${service.slug}"`)[1]?.split('</article>')[0];
     assert.ok(article, service.title);
-    const preview = article.match(/<details\b[^>]*class="service-preview"[^>]*>([\s\S]*?)<\/details>/)?.[1];
-    assert.ok(preview, `Falta la vista de ${service.title}`);
-    assert.ok(preview.includes(`aria-label="Ver imagen y descripción: ${service.title}"`));
-    assert.match(preview, /<img\b[^>]*loading="lazy"/);
-    assert.match(preview, /<p\b[^>]*>[^<]{30,}<\/p>/);
+    assert.equal([...article.matchAll(/<img\b/g)].length, service.subservices.length, service.title);
+    for (const subservice of service.subservices) {
+      assert.ok(article.includes(subservice.title), subservice.title);
+      assert.ok(article.includes(subservice.description), subservice.title);
+      assert.ok(article.includes(`alt="${subservice.alt}"`), subservice.title);
+    }
   }
 });
 

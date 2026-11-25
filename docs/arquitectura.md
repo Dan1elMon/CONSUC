@@ -167,3 +167,11 @@ Astro admite rutas de servidor mediante adaptador; incorporarlas requiere revisa
 ## Clientes · 22 de noviembre de 2026
 
 El usuario solicitó mostrar los logos de imgs/Clientes en este orden: Ferreyros, Unimaq, SNC-Lavalin, Mota-Engil, Marco, SINAR y FH Ingenieros, seguidos de «Entre otros». Esta solicitud sustituye la exclusión anterior de clientes. Los enlaces oficiales se registran en src/content/clients.json; Por solicitud posterior del usuario, SNC-Lavalin se muestra sin enlace ni acción al pulsar su tarjeta. La sección aparece antes de Contacto, con acceso desde el menú. No se crean fichas de proyectos ni se añaden acreditaciones. Avisar al usuario antes de hacer commits o push.
+
+## Carrusel de servicios · 24 de noviembre de 2026
+
+La última solicitud del usuario sustituye la agrupación anterior. Orden público: Ingeniería, Mantenimiento, Trabajos eléctricos, Servicios misceláneos, Construcción y reparación, Transporte. El catálogo conserva sus IDs y slugs para mantener anclas y contrato futuro compatibles. Los módulos contienen 2, 2, 7, 11, 4 y 3 subservicios respectivamente, con imágenes y descripciones breves. Obras civiles menores, pintura, excavaciones y techos pertenecen ahora a Misceláneos; Construcción agrupa módulos tipo iglú, drywall, baldosas y parquet.
+
+El texto suministrado por el usuario incluye fabricación según norma AWS y transporte con unidades y conductores homologados. Se incorporan como descripciones del servicio, sin anunciar una certificación de empresa ni inventar norma, edición, emisor o vigencia. Las fotos son ilustrativas, con fuentes en recursos-visuales.md.
+
+El carrusel es manual, permite categorías, botones anterior/siguiente, flechas izquierda/derecha e Inicio/Fin al enfocar el carrusel, y desplazamiento táctil. La altura se adapta a cada módulo; los módulos inactivos son inertes. Sin JavaScript se conserva el desplazamiento horizontal nativo. Mantener el aviso previo al usuario antes de commits o push.

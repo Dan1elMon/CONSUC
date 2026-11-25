@@ -4,7 +4,7 @@ Landing corporativa de ingeniería, construcción, mantenimiento y transporte pa
 
 ## Estado
 
-Primera versión funcional para revisión local. Incluye Inicio, Nosotros, seis servicios con alcance desplegable, compromisos de seguridad/calidad/ambiente, galería, siete clientes con enlaces oficiales y contacto por WhatsApp, teléfono y correo. Menú móvil accesible y fuentes servidas localmente.
+Primera versión funcional para revisión local. Incluye Inicio, Nosotros, un carrusel de seis categorías y 29 subservicios ilustrados, compromisos de seguridad/calidad/ambiente, galería, siete clientes y contacto por WhatsApp, teléfono y correo. Menú móvil accesible y fuentes servidas localmente.
 
 WhatsApp confirmado: +51 989 522 797. El brochure no está en la web. Se usan logos corporativos de `imgs/Logos` y siete logos de clientes de `imgs/Clientes`, autorizados por el usuario el 22 de noviembre de 2026. No se publican acreditaciones no verificadas. Las fotos de referencia se muestran sin etiquetas por solicitud del usuario; su procedencia se registra en [Recursos visuales](docs/recursos-visuales.md).
 
@@ -12,7 +12,7 @@ El código está en [Dan1elMon/CONSUC](https://github.com/Dan1elMon/CONSUC). Se 
 
 ## Desarrollo local
 
-Cada servicio incluye una vista con fotografía y descripción breve al pasar el mouse por su tarjeta. El control «Ver imagen y descripción» permite abrirla también con toque o teclado; Escape la cierra.
+El carrusel de servicios se organiza en Ingeniería, Mantenimiento, Trabajos eléctricos, Servicios misceláneos, Construcción y reparación, y Transporte. Cada módulo muestra fotografías y descripciones de sus subservicios. Navegación por categorías, anterior/siguiente, flechas del teclado sobre el carrusel o deslizamiento en móvil; sin reproducción automática. Los módulos inactivos quedan fuera del recorrido de teclado y la altura se adapta al contenido. Sin JavaScript, los módulos siguen disponibles mediante desplazamiento horizontal.
 
 Requisitos: Node.js 22.12 o posterior y pnpm 11.25.0. Las dependencias se fijan mediante `pnpm-lock.yaml`.
 

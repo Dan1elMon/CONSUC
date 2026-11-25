@@ -27,6 +27,13 @@ for (const s of services) {
   assert.ok(s.whatsappMessage.length > 20);
   assert.deepEqual(s.media, [], 'No agregar fotos sin revisión al inventario inicial');
   assert.deepEqual(s.projectIds, [], 'No inventar proyectos en el inventario inicial');
+  assert.ok(s.subtitle && s.subservices.length > 0, `Faltan subservicios: ${s.id}`);
+  unique(s.subservices.map(item => item.title), `Subservicios de ${s.id}`);
+  for (const item of s.subservices) {
+    assert.ok(item.title && item.description && item.alt);
+    assert.match(item.image, /^[a-z-]+\.jpg$/);
+    await readFile(new URL(`src/assets/references/${item.image}`, root));
+  }
 }
 assert.deepEqual([...inquiry.properties.serviceSlug.enum].sort(), services.map((s) => s.slug).sort(), 'El contrato debe coincidir con el catálogo');
 assert.equal(inquiry.additionalProperties, false);
