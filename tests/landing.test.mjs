@@ -16,10 +16,17 @@ test('WhatsApp usa el contacto confirmado y conserva acentos y caracteres del me
   assert.equal(formatPhone('+51989522797'), '989 522 797');
 });
 
-test('cada servicio tiene su enlace de consulta con mensaje específico', () => {
+test('cada servicio tiene una vista con imagen, descripción y consulta específica', () => {
   for (const service of services) {
     assert.ok(html.includes(`id="servicio-${service.slug}"`), service.title);
     assert.ok(html.includes(whatsappUrl(service.whatsappMessage)), `Falta el contacto de ${service.title}`);
+    const article = html.split(`id="servicio-${service.slug}"`)[1]?.split('</article>')[0];
+    assert.ok(article, service.title);
+    const preview = article.match(/<details\b[^>]*class="service-preview"[^>]*>([\s\S]*?)<\/details>/)?.[1];
+    assert.ok(preview, `Falta la vista de ${service.title}`);
+    assert.ok(preview.includes(`aria-label="Ver imagen y descripción: ${service.title}"`));
+    assert.match(preview, /<img\b[^>]*loading="lazy"/);
+    assert.match(preview, /<p\b[^>]*>[^<]{30,}<\/p>/);
   }
 });
 

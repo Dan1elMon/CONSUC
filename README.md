@@ -12,6 +12,8 @@ El código está en [Dan1elMon/CONSUC](https://github.com/Dan1elMon/CONSUC). Se 
 
 ## Desarrollo local
 
+Cada servicio incluye una vista con fotografía y descripción breve al pasar el mouse por su tarjeta. El control «Ver imagen y descripción» permite abrirla también con toque o teclado; Escape la cierra.
+
 Requisitos: Node.js 22.12 o posterior y pnpm 11.25.0. Las dependencias se fijan mediante `pnpm-lock.yaml`.
 
 ```sh

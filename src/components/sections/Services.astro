@@ -3,6 +3,22 @@ import services from '../../content/services.json';
 import { whatsappUrl } from '../../lib/whatsapp.mjs';
 import Icon from '../ui/Icon.astro';
 import SectionTitle from '../ui/SectionTitle.astro';
+import { Image } from 'astro:assets';
+import engineering from '../../assets/references/ingenieria.jpg';
+import fabrication from '../../assets/references/soldadura.jpg';
+import electrical from '../../assets/references/electricidad.jpg';
+import construction from '../../assets/references/construccion.jpg';
+import operations from '../../assets/references/almacen.jpg';
+import logistics from '../../assets/references/transporte.jpg';
+
+const previews = {
+  engineering: { image: engineering, alt: 'Elaboración de planos con herramientas de dibujo técnico', description: 'Del levantamiento topográfico al diseño de detalle: planos y modelado BIM para definir tu proyecto.' },
+  fabrication: { image: fabrication, alt: 'Soldadura de una estructura metálica', description: 'Fabricación y montaje de estructuras en acero, con mantenimiento de equipos según las necesidades de tu operación.' },
+  electrical: { image: electrical, alt: 'Revisión de cableado y equipos en un tablero eléctrico', description: 'Instalación y mantenimiento de tableros, cableado, iluminación y sistemas de puesta a tierra.' },
+  construction: { image: construction, alt: 'Obra civil en ejecución', description: 'Obras civiles menores, módulos, techos y acabados para atender las necesidades de tus instalaciones.' },
+  operations: { image: operations, alt: 'Estanterías y suministros organizados en un almacén', description: 'Apoyo en almacenes, señalización, control de polvo, pañoles y vigías para las tareas de campo.' },
+  logistics: { image: logistics, alt: 'Camión de carga circulando por una carretera', description: 'Transporte de personal y carga, almacenamiento y soporte logístico para tu proyecto.' },
+};
 ---
 <section class="section services" id="servicios" aria-label="Nuestros servicios">
   <div class="container">
@@ -11,8 +27,19 @@ import SectionTitle from '../ui/SectionTitle.astro';
       <p>Desde el diseño hasta la operación.<br />Encuentra el soporte que tu trabajo necesita.</p>
     </div>
     <div class="services-grid">
-      {services.map(service => <article class="service-card" id={`servicio-${service.slug}`}>
-        <div class="service-icon"><Icon name={service.id} size={34} /></div>
+      {services.map(service => {
+        const preview = previews[service.id as keyof typeof previews];
+        return <article class="service-card" id={`servicio-${service.slug}`}>
+        <details class="service-preview">
+          <summary aria-label={`Ver imagen y descripción: ${service.title}`}>
+            <span class="service-preview-placeholder" aria-hidden="true"><span class="service-icon"><Icon name={service.id} size={42} /></span><span>CONOCE EL SERVICIO</span></span>
+            <span class="service-preview-toggle"><span class="preview-show">Ver imagen y descripción</span><span class="preview-hide">Cerrar vista</span><Icon name="plus" size={18} /></span>
+          </summary>
+          <div class="service-preview-content">
+            <Image src={preview.image} alt={preview.alt} widths={[480, 800]} sizes="(max-width: 600px) 100vw, (max-width: 800px) 50vw, 33vw" format="webp" loading="lazy" />
+            <p>{preview.description}</p>
+          </div>
+        </details>
         <h3>{service.title}</h3>
         <p>{service.summary}</p>
         <details class="service-details">
@@ -20,8 +47,122 @@ import SectionTitle from '../ui/SectionTitle.astro';
           <ul>{service.scope.map(item => <li>{item}</li>)}</ul>
         </details>
         <a class="service-contact" href={whatsappUrl(service.whatsappMessage)} target="_blank" rel="noopener noreferrer" aria-label={`Consultar por WhatsApp: ${service.title}`}><Icon name="chat" size={18} /> Consultar este servicio</a>
-      </article>)}
+      </article>;
+      })}
     </div>
     <div class="service-bottom"><p>¿Tu requerimiento combina varios servicios?</p><a href={whatsappUrl('Hola, tengo un proyecto que requiere varios servicios. Quisiera coordinar una consulta con CONSUC SAC.')} target="_blank" rel="noopener noreferrer">Cuéntanos qué necesitas</a></div>
   </div>
 </section>
+
+<script>
+  const hoverPointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  document.querySelectorAll<HTMLElement>('.service-card').forEach(card => {
+    const preview = card.querySelector<HTMLDetailsElement>('.service-preview');
+    if (!preview) return;
+    card.addEventListener('pointerenter', event => {
+      if (hoverPointer.matches && event.pointerType !== 'touch') preview.open = true;
+    });
+    card.addEventListener('pointerleave', () => {
+      if (hoverPointer.matches && !preview.matches(':focus-within')) preview.open = false;
+    });
+    preview.addEventListener('focusout', () => {
+      queueMicrotask(() => {
+        if (!preview.matches(':focus-within') && !card.matches(':hover')) preview.open = false;
+      });
+    });
+    card.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && preview.open) {
+        preview.open = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  .service-preview {
+    position: relative;
+    width: 100%;
+    height: 286px;
+    flex-shrink: 0;
+    margin-bottom: 24px;
+    background: #f4f6f8;
+    border: 1px solid #e0e6eb;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .service-preview summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  .service-preview summary::-webkit-details-marker { display: none; }
+  .service-preview summary:focus-visible {
+    outline-offset: -4px;
+    outline: 3px solid var(--color-accent-orange);
+  }
+  .service-preview summary:focus-visible::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 3px solid var(--color-accent-orange);
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .service-preview-placeholder {
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    color: #556575;
+    font-size: .75rem;
+    font-weight: 650;
+    letter-spacing: .09em;
+    background: radial-gradient(circle at 50% 40%, #fff4e9, #f4f6f8 75%);
+  }
+  .service-preview-placeholder .service-icon { margin: 0; padding: 20px; }
+  .service-preview-toggle {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    inset-inline: 0;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-inline: 15px;
+    background: #1c2a39;
+    color: white;
+    font-size: .8125rem;
+    font-weight: 600;
+  }
+  .preview-hide { display: none; }
+  .service-preview[open] .preview-show { display: none; }
+  .service-preview[open] .preview-hide { display: inline; }
+  .service-preview[open] .service-preview-toggle svg { transform: rotate(45deg); }
+  .service-preview-content {
+    position: absolute;
+    inset: 0 0 46px;
+    pointer-events: none;
+    background: #1c2a39;
+  }
+  .service-preview-content img { width: 100%; height: 100%; object-fit: cover; }
+  .service-preview-content p {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px 16px;
+    margin: 0;
+    background: linear-gradient(transparent 10%, #101d2be8 75%);
+    color: white;
+    font-size: .875rem;
+    line-height: 1.6;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .service-preview[open] .service-preview-content { animation: reveal-preview .2s ease-out; }
+    @keyframes reveal-preview { from { opacity: 0; } to { opacity: 1; } }
+  }
+</style>
